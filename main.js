@@ -7,7 +7,6 @@ import App from './App'
 Vue.prototype.requestUrl = 'http://www.pmokanban.com'; // 开发环境
 
 Vue.config.productionTip = false
-
 App.mpType = 'app'
 const app = new Vue({
 	...App
