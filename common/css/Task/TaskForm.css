@@ -1,10 +1,66 @@
-#fromId{
+page {
+	background-color: #FFFFFF;
+}
+
+#main {
+	width: 100%;
+}
+
+#fromId {
 	width: 85%;
 	margin: auto;
 	padding-top: 20rpx;
 	padding-bottom: 20rpx;
 }
 
-.jdt{
+.gq {
+	font-size: 35rpx;
+	font-weight: bold;
+	color: #4CD964;
+}
+
+.jdt {
 	padding-top: 20rpx;
+}
+
+.tpplan {
+	height: 48rpx;
+}
+
+.zhaopiang {
+	width: 45rpx;
+	height: 45rpx;
+	position: absolute;
+}
+
+.tptitle {
+	margin-left: 50rpx;
+}
+
+.img {
+	margin-top: 20rpx;
+}
+
+.btnplan {
+	width: 100%;
+	text-align: center;
+}
+
+.plan {
+	width: 100%;
+	background: #fff;
+	z-index: 10;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+}
+
+.btn1 {
+	width: 25%;
+	margin: 10rpx 0rpx 5rpx 0rpx;
+}
+
+.btn2 {
+	width: 40%;
+	margin: 10rpx 20rpx 5rpx 20rpx;
 }

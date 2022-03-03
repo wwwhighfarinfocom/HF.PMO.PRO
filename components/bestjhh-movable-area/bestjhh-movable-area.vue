@@ -15,7 +15,7 @@
 
 <script>
 	export default {
-		props: ['min', 'max', 'value'],
+		props: ['min', 'max', 'num'],
 		data() {
 			return {
 				slideBarWidth: 0,
@@ -24,7 +24,7 @@
 				x: 0,
 				y: 0,
 				score: this.min ? this.min : 0,
-				value: this.value,
+				val: this.num,
 			};
 		},
 		created() {
@@ -35,7 +35,7 @@
 					// 设置初始值
 					setTimeout(function(){
 						// 确保每次刷新
-						me.x = me.value / 100 * me.slideBarWidth;
+						me.x = me.val / 100 * me.slideBarWidth;
 						me.score = parseInt(me.x / me.slideBarWidth * 100) + parseInt(me.minScore);
 					},500);
 				}).exec();

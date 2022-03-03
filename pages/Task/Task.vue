@@ -269,9 +269,10 @@
 			},
 
 			onClick(item) {
+				var me = this;
 				console.log(item);
 				uni.navigateTo({
-					url: "../Task/TaskForm?taskId=" + item.taskId,
+					url: "../Task/TaskForm?taskId=" + item.taskId + "&type=" + me.checkedNum + 1,
 				});
 			}
 		}
