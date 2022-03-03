@@ -1,0 +1,90 @@
+#main {
+	width: 100%;
+	overflow-y: auto;
+	background-color: #F1F1F1;
+}
+
+#title {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #F8F8F9;
+	padding-bottom: 10rpx;
+}
+
+#row {
+	width: 96%;
+	margin: auto;
+	background-color: #F8F8F9;
+	border-radius: 15rpx;
+	margin-top: 10rpx;
+	padding: 10rpx 10rpx 10rpx 20rpx;
+}
+
+#step {
+	width: 96%;
+	margin: auto;
+	margin-top: 10rpx;
+	padding-top: 10rpx;
+	padding-bottom: 10rpx;
+	border-radius: 10rpx;
+	background-color: #F8F8F9;
+}
+
+#beizhu {
+	width: 96%;
+	margin: auto;
+	margin-top: 10rpx;
+	border-radius: 15rpx;
+	background-color: #F8F8F9;
+}
+
+.bzstyle {
+	padding: 10rpx 20rpx 10rpx 20rpx;
+}
+
+.textarea {
+	width: 100%;
+}
+
+#btn {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: #F8F8F9;
+}
+
+#btnplan {
+	width: 100%;
+	height: 200rpx;
+}
+
+image {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 15rpx;
+}
+
+.yindao {
+	border: 1rpx solid #E5E5E5;
+	background-color: #E5E5E5;
+	margin: auto;
+	width: 10rpx;
+}
+
+.colorStyle1 {
+	color: #4CD964;
+}
+
+.colorStyle2 {
+	color: #EE7752;
+}
+
+.colorStyle3 {
+	color: #F0AD4E;
+}
+
+.colorStyle4 {
+	color: #E43D33;
+}

@@ -1,0 +1,100 @@
+#cistern {
+	width: 100%;
+	height: 75rpx;
+}
+
+#gudin {
+	position: fixed;
+	width: 100%;
+	height: 75rpx;
+	z-index: 9999;
+	background-color: #FFFFFF;
+}
+
+.example-body {
+	display: block;
+	padding: 5rpx 10rpx 0;
+	overflow: hidden;
+}
+
+.demo-uni-row {
+	margin-bottom: 10px;
+	display: block;
+}
+
+.demo-uni-col {
+	height: 70rpx;
+	border-radius: $uni-border-radius-base;
+}
+
+.dark {
+	vertical-align: middle;
+	line-height: 80rpx;
+	text-align: center;
+}
+
+.light {
+	vertical-align: middle;
+	line-height: 70rpx;
+	text-align: center;
+}
+
+.dark text {
+	font-size: 35rpx;
+}
+
+.light text {
+	font-size: 35rpx;
+}
+
+#myWait {
+	width: 96%;
+	margin: auto;
+	background-color: #f0f0f0;
+}
+
+#myFinish{
+	width: 96%;
+	margin: auto;
+	background-color: #f0f0f0;
+}
+
+image {
+	width: 40rpx;
+	height: 40rpx;
+	border-radius: 10rpx;
+}
+
+.uni-list {
+	margin-top: 5rpx;
+}
+
+.chat-custom-right {
+	flex: 1;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.chat-custom-text1 {
+	font-size: 14px;
+	color: #999;
+}
+
+.chat-custom-text2 {
+	font-size: 14px;
+	color: #F0AD4E;
+	padding-left: 20%;
+}
+
+.chat-custom-text3 {
+	font-size: 14px;
+	color: #DD524D;
+	padding-left: 20%;
+}
+
+.chat-custom-text4 {
+	font-size: 14px;
+	color: #4CD964;
+	padding-left: 20%;
+}

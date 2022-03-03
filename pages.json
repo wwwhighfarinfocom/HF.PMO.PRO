@@ -1,0 +1,55 @@
+{
+	"pages": [{
+		"path": "pages/Login/Login",
+		"style": {
+			"navigationBarTitleText": "PMO-登录",
+			"app-plus": {
+				"titleNView": false //禁用原生导航栏
+			}
+		}
+	}, {
+		"path": "pages/Home/Home",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "PMO-主页"
+		}
+	}, {
+		"path": "pages/Approval/Index",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "我的审批"
+		}
+	}, {
+		"path": "pages/Approval/Processpage",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "流程审批"
+		}
+	}, {
+		"path": "pages/Task/Task",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "我的任务"
+		}
+	}, {
+		"path": "pages/Task/TaskForm",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "任务信息"
+		}
+	}],
+	"globalStyle": {
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		},
+		"pageOrientation": "portrait", //横屏配置，全局屏幕旋转设置(仅 APP/微信/QQ小程序)，支持 auto / portrait / landscape
+		"rpxCalcMaxDeviceWidth": 960,
+		"rpxCalcBaseDeviceWidth": 375,
+		"rpxCalcIncludeWidth": 750
+	}
+}

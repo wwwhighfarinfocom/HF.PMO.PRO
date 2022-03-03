@@ -1,0 +1,52 @@
+#control {
+	width: 100%;
+	height: 75rpx;
+}
+
+#plan {
+	width: 100%;
+	margin: auto;
+	margin-bottom: 10rpx;
+	position: fixed;
+	z-index: 9999;
+	background-color: #FFFFFF;
+}
+
+.tabclass {
+	width: 96%;
+	margin: auto;
+}
+
+
+#optionsstyle {
+	width: 18%;
+	height: 100%;
+	float: left;
+	display: inline;
+	position: fixed;
+	border-right: 2rpx solid #D8D8D8;
+	background-color: #FFFFFF;
+}
+
+.content {
+	width: 82%;
+	float: left;
+	display: inline;
+	margin-left: 18%;
+}
+
+.grid-item-box {
+	flex: 1;
+	// position: relative;
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 15px 0;
+}
+
+.checked {
+	border-bottom: 4rpx solid #007AFF;
+}
