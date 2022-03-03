@@ -1,0 +1,12 @@
+{
+    "id": "bestjhh-movable-area",
+    "name": "可拖拽进度条、滑动条、评分条、movable-area",
+    "version": "1.0.0",
+    "description": "可拖拽进度条、滑动条、评分条、movable-area",
+    "keywords": [
+        "可拖拽进度条",
+        "滑动条",
+        "评分条",
+        "movable-area"
+    ]
+}

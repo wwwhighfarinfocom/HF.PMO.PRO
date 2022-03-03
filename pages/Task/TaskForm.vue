@@ -2,11 +2,11 @@
 	<view style="background-color: #FFFFFF;">
 		<view id="fromId">
 			<uni-forms :modelValue="formData">
-				<uni-forms-item label="任务名称" name="name">
-					<uni-easyinput type="text" v-model="formData.name" placeholder="请输入姓名" />
+				<uni-forms-item label="任务名称">
+					<uni-easyinput type="text" v-model="formData.taskName" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="所属项目" name="name">
-					<uni-easyinput type="text" v-model="formData.name" placeholder="请输入姓名" />
+				<uni-forms-item label="所属项目">
+					<uni-easyinput type="text" v-model="formData.projectName" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="计划开始" name="name">
 					<uni-datetime-picker type="date" :value="single" :border="false" :disabled="true" />
@@ -24,8 +24,8 @@
 					<uni-datetime-picker type="date" :value="single" :border="false" />
 				</uni-forms-item>
 				<uni-forms-item label="任务进度" name="name">
-					<progress percent="60" active :border-radius="300" show-info stroke-width="8"
-						style="margin-top: 16rpx;" />
+					<bestjhh-movable-area @change='change' :value="formData.progressValue" class="jdt">
+					</bestjhh-movable-area>
 				</uni-forms-item>
 			</uni-forms>
 		</view>
@@ -36,18 +36,23 @@
 	export default {
 		data() {
 			return {
-
-				formData: {},
+				formData: {
+					taskName: "",
+					projectName: "",
+					progressValue: "60",// 进度
+				},
 				hobby: "",
 				single: "",
-
 			}
 		},
 		mounted() {
 
 		},
 		methods: {
-
+			change(val) {
+				// 进度条数值
+				this.formData.progressValue = val;
+			}
 		}
 	}
 </script>
