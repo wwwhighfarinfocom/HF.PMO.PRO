@@ -24,23 +24,19 @@
 	float: left;
 	display: inline;
 	position: fixed;
-	border-right: 2rpx solid #D8D8D8;
 	background-color: #FFFFFF;
 }
 
 .content {
-	width: 82%;
+	width: 83%;
 	float: left;
 	display: inline;
-	margin-left: 18%;
+	margin-left: 17%;
 }
 
 .grid-item-box {
 	flex: 1;
-	// position: relative;
-	/* #ifndef APP-NVUE */
 	display: flex;
-	/* #endif */
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
