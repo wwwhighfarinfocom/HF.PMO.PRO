@@ -8,24 +8,23 @@
 				<uni-forms-item label="所属项目" name="projectName">
 					<uni-easyinput type="text" v-model="formData.projectName" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="计划开始" name="planStartDate">
-					<uni-datetime-picker type="date" :value="formData.planStartDate" :border="false" :disabled="true" />
+				<uni-forms-item label="计划开始" name="strStart">
+					<uni-datetime-picker type="date" :value="formData.strStart" :border="false" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="计划结束" name="planFinishDate">
-					<uni-datetime-picker type="date" :value="formData.planFinishDate" :border="false"
-						:disabled="true" />
+				<uni-forms-item label="计划结束" name="strFinish">
+					<uni-datetime-picker type="date" :value="formData.strFinish" :border="false" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item name="durationDays">
-					<text class="gq">工期共计{{formData.durationDays}}天</text>
+				<uni-forms-item name="days">
+					<text class="gq">工期共计{{formData.days}}天</text>
 				</uni-forms-item>
-				<uni-forms-item label="实际开始" name="realStartDate">
-					<uni-datetime-picker type="date" :value="formData.realStartDate" :border="false" />
+				<uni-forms-item label="实际开始" name="strActualStart">
+					<uni-datetime-picker type="date" :value="formData.strActualStart" :border="false" />
 				</uni-forms-item>
-				<uni-forms-item label="实际结束" name="realFinishDate">
-					<uni-datetime-picker type="date" :value="formData.realFinishDate" :border="false" />
+				<uni-forms-item label="实际结束" name="strActualFinish">
+					<uni-datetime-picker type="date" :value="formData.strActualFinish" :border="false" />
 				</uni-forms-item>
-				<uni-forms-item label="任务进度" name="progressValue">
-					<bestjhh-movable-area @change='change' :num="formData.progressValue" class="jdt">
+				<uni-forms-item label="任务进度" name="percentage">
+					<bestjhh-movable-area v-if="hackReset" @change='change' :num="formData.percentage" class="jdt">
 					</bestjhh-movable-area>
 				</uni-forms-item>
 				<view class="tpplan">
@@ -35,16 +34,19 @@
 					<view class="tptitle">上传任务图片</view>
 				</view>
 				<view class="img">
-					<uni-file-picker v-model="formData.images" file-mediatype="image" mode="grid" file-extname="png,jpg"
-						:limit="6" @progress="progress" @success="success" @fail="fail" @select="select" />
+					<uni-file-picker v-model="formData.images" file-mediatype="image" mode="grid"
+						file-extname="png,jpg,jpeg,gif" :limit="6" @progress="progress" @success="success" @fail="fail"
+						@select="select" />
 				</view>
 			</uni-forms>
 		</view>
 		<view class="button-sp-area btnplan">
 			<view class="plan">
-				<button class="mini-btn btn1" type="default" size="mini">上一条</button>
-				<button class="mini-btn btn2" type="primary" size="mini">提交</button>
-				<button class="mini-btn btn1" type="default" size="mini">下一条</button>
+				<button class="mini-btn btn1" :disabled="isdisabled" type="default" size="mini"
+					@click="upperTask">上一条</button>
+				<button class="mini-btn btn2" :disabled="isdisabled" type="primary" size="mini">提交</button>
+				<button class="mini-btn btn1" :disabled="isdisabled" type="default" size="mini"
+					@click="nextTask">下一条</button>
 			</view>
 		</view>
 	</view>
@@ -55,20 +57,13 @@
 		data() {
 			return {
 				formData: {
-					taskName: "",
-					projectName: "",
-					planStartDate: "",
-					planFinishDate: "",
-					realStartDate: "",
-					realFinishDate: "",
-					durationDays: 0,
-					progressValue: "60", // 进度
-					images: [],
+					percentage: '0'
 				},
-				hobby: "",
-				single: "",
+				isdisabled: false,
 				taskId: null,
 				type: null,
+				taskIds: [],
+				hackReset: true,
 			}
 		},
 		onLoad(option) {
@@ -77,6 +72,7 @@
 		},
 		mounted() {
 			this.init();
+			this.getTaskIds();
 		},
 		methods: {
 			init() {
@@ -85,27 +81,76 @@
 				uni.request({
 					url: me.requestUrl + "/api/services/app/Task/GetTaskInfo",
 					method: "GET",
+					withCredentials: true,
 					data: {
 						taskId: me.taskId,
 						type: me.type,
 					},
-					withCredentials: true,
 					success(res) {
-						var data = res.data.result;
-						me.formData.taskName = data.taskName;
-						me.formData.projectName = data.projectName;
-						me.formData.planStartDate = data.strStart;
-						me.formData.planFinishDate = data.strFinish;
-						me.formData.realStartDate = data.strActualStart;
-						me.formData.realFinishDate = data.strActualFinish;
-						me.formData.durationDays = data.days;
-						me.formData.progressValue = data.percentage.toString();
-
+						me.formData = res.data.result;
+						me.formData.percentage = me.formData.percentage.toString();
+						me.formData.images = [];
+						// 重新加载进度组件
+						me.loadArea();
 					},
 					complete() {
 						uni.hideLoading();
+						me.isdisabled = false;
 					}
-				})
+				});
+			},
+			getTaskIds() {
+				var me = this;
+				me.isdisabled = true;
+				uni.request({
+					url: me.requestUrl + "/api/services/app/Task/GetTaskTypeIds",
+					method: "GET",
+					withCredentials: true,
+					data: {
+						type: me.type,
+					},
+					success(res) {
+						me.taskIds = res.data.result;
+					}
+				});
+			},
+			upperTask() {
+				var me = this;
+				me.isdisabled = true;
+				var index = me.taskIds.findIndex((item) => {
+					return item == me.taskId
+				});
+				if (index == 0) {
+					uni.showToast({
+						title: "已是第一项任务",
+						icon: "error"
+					})
+					return;
+				}
+				var ids = me.taskIds.filter((x, i) => {
+					return i == index - 1;
+				});
+				me.taskId = ids[0];
+				me.init();
+			},
+			nextTask() {
+				var me = this;
+				me.isdisabled = true;
+				var index = me.taskIds.findIndex((item) => {
+					return item == me.taskId
+				});
+				if (index == me.taskIds.length - 1) {
+					uni.showToast({
+						title: "已是最后一项任务",
+						icon: "error"
+					})
+					return;
+				}
+				var ids = me.taskIds.filter((x, i) => {
+					return i == index + 1;
+				});
+				me.taskId = ids[0];
+				me.init();
 			},
 			// 获取上传状态
 			select(e) {
@@ -128,6 +173,13 @@
 			change(val) {
 				// 进度条数值
 				this.formData.progressValue = val;
+			},
+			loadArea() {
+				// 重新加载进度组件
+				this.hackReset = false;
+				this.$nextTick(function() {
+					this.hackReset = true;
+				})
 			}
 		}
 	}

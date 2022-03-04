@@ -2,9 +2,10 @@
 import Vue from 'vue'
 import App from './App'
 
-// 请求地址
-Vue.prototype.requestUrl = 'http://localhost:9398'; //本地环境
-//Vue.prototype.requestUrl = 'http://www.pmokanban.com'; // 开发环境
+
+//Vue.prototype.requestUrl = 'http://localhost:9398'; //本地环境
+Vue.prototype.requestUrl = 'http://www.pmokanban.com'; // 开发环境
+//Vue.prototype.requestUrl = '/ajaxRequest'; // 代理配置
 
 Vue.config.productionTip = false
 App.mpType = 'app'

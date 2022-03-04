@@ -271,8 +271,9 @@
 			onClick(item) {
 				var me = this;
 				console.log(item);
+				var num = me.checkedNum + 1;
 				uni.navigateTo({
-					url: "../Task/TaskForm?taskId=" + item.taskId + "&type=" + me.checkedNum + 1,
+					url: "../Task/TaskForm?taskId=" + item.taskId + "&type=" + num,
 				});
 			}
 		}

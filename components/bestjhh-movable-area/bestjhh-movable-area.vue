@@ -33,18 +33,20 @@
 				uni.createSelectorQuery().select(".slider-box").boundingClientRect(function(res) {
 					me.slideBarWidth = res.width;
 					// 设置初始值
-					setTimeout(function(){
+					setTimeout(function() {
 						// 确保每次刷新
 						me.x = me.val / 100 * me.slideBarWidth;
-						me.score = parseInt(me.x / me.slideBarWidth * 100) + parseInt(me.minScore);
-					},500);
+						me.score = Math.ceil(parseInt(Math.ceil(me.x) / Math.ceil(me
+							.slideBarWidth) * 100) + parseInt(me.minScore));
+					}, 500);
 				}).exec();
 			})
 		},
 		methods: {
 			onChange: function(e, i) {
 				this.x = e.detail.x
-				this.score = parseInt(e.detail.x / this.slideBarWidth * 100) + parseInt(this.minScore)
+				this.score = Math.ceil(parseInt(Math.ceil(e.detail.x) / Math.ceil(this.slideBarWidth) * 100) +
+					parseInt(this.minScore));
 				this.$emit('change', this.score)
 			}
 		}
@@ -56,7 +58,7 @@
 
 	.slider-box {
 		display: flex;
-		width: 90%;
+		width: 100%;
 		height: 32rpx;
 		position: relative;
 
@@ -100,7 +102,7 @@
 			}
 
 			.slider {
-				width: 0;
+				width: 0rpx;
 				height: 100%;
 				position: relative;
 				z-index: 2;
