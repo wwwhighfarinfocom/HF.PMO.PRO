@@ -34,9 +34,9 @@
 					<view class="tptitle">上传任务图片</view>
 				</view>
 				<view class="img">
-					<uni-file-picker v-model="formData.images" file-mediatype="image" mode="grid"
-						file-extname="png,jpg,jpeg,gif" :limit="6" @progress="progress" @success="success" @fail="fail"
-						@select="select" />
+					<uni-file-picker v-model="formData.imgUrls" file-mediatype="image" mode="grid"
+						file-extname="png,jpg,jpeg,gif" :limit="6" @progress="progress" @success="success"
+						@delete="deleteImg" @select="select" />
 				</view>
 			</uni-forms>
 		</view>
@@ -44,7 +44,7 @@
 			<view class="plan">
 				<button class="mini-btn btn1" :disabled="isdisabled" type="default" size="mini"
 					@click="upperTask">上一条</button>
-				<button class="mini-btn btn2" :disabled="isdisabled" type="primary" size="mini">提交</button>
+				<button class="mini-btn btn2" :disabled="isdisabled" type="primary" size="mini" @click="ok">提交</button>
 				<button class="mini-btn btn1" :disabled="isdisabled" type="default" size="mini"
 					@click="nextTask">下一条</button>
 			</view>
@@ -89,7 +89,11 @@
 					success(res) {
 						me.formData = res.data.result;
 						me.formData.percentage = me.formData.percentage.toString();
-						me.formData.images = [];
+						if (me.formData.imgUrls == "" | me.formData.imgUrls == null) {
+							me.formData.imgUrls = [];
+						} else {
+							me.formData.imgUrls = me.formData.imgUrls.split(',');
+						}
 						// 重新加载进度组件
 						me.loadArea();
 					},
@@ -152,22 +156,16 @@
 				me.taskId = ids[0];
 				me.init();
 			},
+			ok() {
+				var me = this;
+				var da = me.formData;
+			},
 			// 获取上传状态
 			select(e) {
 				console.log('选择文件：', e)
 			},
-			// 获取上传进度
-			progress(e) {
-				console.log('上传进度：', e)
-			},
-
-			// 上传成功
-			success(e) {
-				console.log('上传成功')
-			},
-
 			// 上传失败
-			fail(e) {
+			deleteImg(e) {
 				console.log('上传失败：', e)
 			},
 			change(val) {
