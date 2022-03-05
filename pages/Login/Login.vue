@@ -49,7 +49,7 @@
 			})
 		},
 		mounted() {
-			// 登录前
+			/* 登录前 */
 			this.beforeLogin();
 		},
 		methods: {
@@ -65,7 +65,29 @@
 					data: params,
 					withCredentials: true,
 					success(res) {
-						var d = res;
+						// 租户处理
+						if (me.zhName == '' || me.zhName == null) {
+							me.removeCookie('Abp.TenantId');
+						} else {
+							uni.request({
+								url: me.requestUrl + "/api/services/app/Account/IsTenantAvailable",
+								method: "POST",
+								withCredentials: true,
+								data: {
+									tenancyName: me.zhName
+								},
+								header: {
+									'content-type': 'application/json' //自定义请求头信息
+								},
+								success(res) {
+									if (res.statusCode == 200) {
+										if (res.data.result.state == 1) {
+											me.setCookieValue('Abp.TenantId', res.data.result.tenantId)
+										}
+									}
+								}
+							})
+						}
 					}
 				})
 			},
@@ -80,55 +102,32 @@
 					returnUrl: "/",
 					returnUrlHash: ""
 				}
-				// 租户处理
-				if (me.zhName == '' || me.zhName == null) {
-					me.removeCookie('Abp.TenantId');
-				} else {
-					uni.request({
-						url: me.requestUrl + "/api/services/app/Account/IsTenantAvailable",
-						method: "POST",
-						withCredentials: true,
-						data: {
-							tenancyName: me.zhName
-						},
-						header: {
-							'content-type': 'application/json' //自定义请求头信息
-						},
-						success(res) {
-							if (res.statusCode == 200) {
-								if (res.data.result.state == 1) {
-									me.setCookieValue('Abp.TenantId', res.data.result.tenantId)
-									// 登录请求
-									uni.request({
-										url: me.requestUrl + "/Account/Login",
-										method: "POST",
-										data: params,
-										withCredentials: true,
-										header: {
-											'content-type': 'application/x-www-form-urlencoded' //自定义请求头信息
-										},
-										success(res) {
-											// 主页
-											if (res.data.success) {
-												uni.navigateTo({
-													url: "../Home/Home"
-												})
-											} else {
-												uni.showToast({
-													title: "登录失败",
-													icon: "error"
-												})
-											}
-										}
-									})
-								}
-							}
-						},
-						complete(res) {
-							uni.hideLoading();
+				// 登录请求
+				uni.request({
+					url: me.requestUrl + "/Account/Login",
+					method: "POST",
+					data: params,
+					withCredentials: true,
+					header: {
+						'content-type': 'application/x-www-form-urlencoded' //自定义请求头信息
+					},
+					success(res) {
+						// 主页
+						if (res.data.success) {
+							uni.navigateTo({
+								url: "../Home/Home"
+							})
+						} else {
+							uni.showToast({
+								title: "登录失败",
+								icon: "error"
+							})
 						}
-					})
-				}
+					},
+					complete() {
+						uni.hideLoading();
+					}
+				})
 			},
 
 			// 租户变更
