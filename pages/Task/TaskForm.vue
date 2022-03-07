@@ -35,8 +35,8 @@
 				</view>
 				<view class="img">
 					<uni-file-picker v-model="formData.imgUrls" file-mediatype="image" mode="grid"
-						file-extname="png,jpg,jpeg,gif" :limit="6" @progress="progress" @success="success"
-						@delete="deleteImg" @select="select" />
+						file-extname="png,jpg,jpeg,gif" :limit="6" @select="select" @progress="progress"
+						@success="success" @delete="deleteImg" />
 				</view>
 			</uni-forms>
 		</view>
@@ -94,6 +94,12 @@
 						} else {
 							me.formData.imgUrls = me.formData.imgUrls.split(',');
 						}
+						var item = {
+							"name": "tupian",
+							"extname": "jpg",
+							"url": "http://localhost:9398/mobile/imgs/20220307/tupian.jpg",
+						}
+						me.formData.imgUrls.push(item);
 						// 重新加载进度组件
 						me.loadArea();
 					},
@@ -162,12 +168,53 @@
 			},
 			// 获取上传状态
 			select(e) {
-				console.log('选择文件：', e)
+				var me = this;
+				/* e.tempFiles.forEach(item => {
+					uni.request({
+						url: me.requestUrl + "/MobileUpload/Upload",
+						method: "POST",
+						withCredentials: true,
+						header: {
+							'content-type': 'application/x-www-form-urlencoded' //自定义请求头信息
+						},
+						data: {
+							url:item.url,
+							name:item.name
+						},
+						success(res) {
+							var s = res;
+						}
+					});
+				}); */
+
+
+				/* const tempFilePaths = e.tempFiles;
+				tempFilePaths.forEach(item => {
+					uni.uploadFile({
+						url: me.requestUrl + "/MobileUpload/Upload",
+						method: "POST",
+						files: item,
+						name:'file',
+						header: {
+							'content-type': 'multipart/form-data'
+						},
+						success: (uploadFileRes) => {
+							console.log(uploadFileRes.data);
+						}
+					});
+				}) */
 			},
-			// 上传失败
+
+			// 上传成功
+			success(e) {
+				console.log('上传成功')
+			},
+
+			// 移除图片
 			deleteImg(e) {
 				console.log('上传失败：', e)
 			},
+
 			change(val) {
 				// 进度条数值
 				this.formData.progressValue = val;

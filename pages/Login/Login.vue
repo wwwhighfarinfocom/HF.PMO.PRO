@@ -85,7 +85,7 @@
 							tenancyName: me.tenantName
 						},
 						header: {
-							'content-type': 'application/json' //自定义请求头信息
+							'content-type': 'application/json' //设置请求标头
 						},
 						success(res) {
 							if (res.statusCode == 200) {
