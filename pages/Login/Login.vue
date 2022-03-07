@@ -5,7 +5,7 @@
 				<text>高远科技-项目管理</text>
 			</view>
 			<view class="tenanttyle">
-				<text>租户：{{zhName}}</text><text class="zhbiangen" @click="biangen">(变更)</text>
+				<text>租户：{{tenantName}}</text><text class="zhbiangen" @click="biangen">(变更)</text>
 			</view>
 			<view class="input-item">
 				<view class="title-content">
@@ -36,12 +36,12 @@
 				username: 'admin',
 				password: '123qwe',
 				maxHeight: 500,
-				zhName: 'MG',
+				tenantName: 'MG',
 			}
 		},
 		onLoad() {
 			var me = this;
-			// 页面渲染
+			/* 页面渲染 */
 			uni.getSystemInfo({
 				success: (res) => {
 					this.maxHeight = res.windowHeight;
@@ -53,8 +53,8 @@
 			this.beforeLogin();
 		},
 		methods: {
-			// 登录前
-			beforeLogin() {
+			/* 登录前 更新Cookie*/
+			beforeLoginUpdCookie() {
 				var me = this;
 				var params = {
 					returnUrl: "/"
@@ -63,33 +63,41 @@
 					url: me.requestUrl + "/Account/Login",
 					method: "GET",
 					data: params,
-					withCredentials: true,
+					withCredentials: true, // 请求允许携带Cookies凭证
 					success(res) {
-						// 租户处理
-						if (me.zhName == '' || me.zhName == null) {
-							me.removeCookie('Abp.TenantId');
-						} else {
-							uni.request({
-								url: me.requestUrl + "/api/services/app/Account/IsTenantAvailable",
-								method: "POST",
-								withCredentials: true,
-								data: {
-									tenancyName: me.zhName
-								},
-								header: {
-									'content-type': 'application/json' //自定义请求头信息
-								},
-								success(res) {
-									if (res.statusCode == 200) {
-										if (res.data.result.state == 1) {
-											me.setCookieValue('Abp.TenantId', res.data.result.tenantId)
-										}
-									}
-								}
-							})
-						}
+						var dat = res;
+						me.beforeLoginUpdTenant();
 					}
 				})
+			},
+
+			/* 租户更新 */
+			beforeLoginUpdTenant() {
+				var me = this;
+				if (me.tenantName == '' || me.tenantName == null) {
+					me.removeCookie('Abp.TenantId');
+				} else {
+					uni.request({
+						url: me.requestUrl + "/api/services/app/Account/IsTenantAvailable",
+						method: "POST",
+						withCredentials: true,
+						data: {
+							tenancyName: me.tenantName
+						},
+						header: {
+							'content-type': 'application/json' //自定义请求头信息
+						},
+						success(res) {
+							if (res.statusCode == 200) {
+								if (res.data.result.state == 1) {
+									me.setCookieValue('Abp.TenantId', res.data.result.tenantId)
+								} else {
+									me.removeCookie('Abp.TenantId');
+								}
+							}
+						}
+					})
+				}
 			},
 			// 登录
 			login() {
@@ -139,13 +147,13 @@
 					placeholderText: "租户标识",
 					success: function(res) {
 						if (res.confirm) {
-							me.zhName = res.content;
+							me.tenantName = res.content;
 						}
 					}
 				});
 			},
 
-			// 设置Cookie
+			/* 设置Cookie */
 			setCookieValue(cname, value) {
 				// 到期日期
 				var expireDate = new Date(new Date().getTime() + 5 * 365 * 86400000);
@@ -153,7 +161,7 @@
 				document.cookie = cname + "=" + value + ";" + expire;
 			},
 
-			// 移除指定Cookie
+			/* 移除指定Cookie */
 			removeCookie(cname) {
 				var name = cname + "=";
 				var ca = document.cookie.split(';');
@@ -168,6 +176,12 @@
 					}
 					document.cookie = cookieStr;
 				}
+			}
+		},
+		watch: {
+			tenantName(newVal, oldVal) {
+				console.log(newVal, oldVal);
+				this.beforeLoginUpdTenant();
 			}
 		}
 	}
