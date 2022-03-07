@@ -50,7 +50,7 @@
 		},
 		mounted() {
 			/* 登录前 */
-			this.beforeLogin();
+			this.beforeLoginUpdCookie();
 		},
 		methods: {
 			/* 登录前 更新Cookie*/

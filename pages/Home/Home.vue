@@ -26,7 +26,7 @@
 				dynamicList: [],
 				list: [{
 						text: '我的任务',
-						badge: '10',
+						badge: '0',
 						type: "primary"
 					},
 					{
@@ -86,8 +86,13 @@
 						console.log(res);
 						var num = res.data.result.myPendingNum.toString();
 						me.list.forEach(x => {
-							if (x.text == "我的审批") {
-								x.badge = num;
+							switch (x.text) {
+								case '我的任务':
+									x.badge = res.data.result.myTaskNum.toString();
+									break;
+								case '我的审批':
+									x.badge = res.data.result.myPendingNum.toString();
+									break;
 							}
 						})
 					},
