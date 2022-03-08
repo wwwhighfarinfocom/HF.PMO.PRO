@@ -43,7 +43,7 @@
 
 		<view id="step">
 			<template v-for="(item,index) in steps">
-				<uni-row>
+				<uni-row :class="{backcolor:item.approvalStateEnum=='2'}">
 					<uni-col :span="4" style="height: 83rpx;text-align: center;">
 						<image src="/static/Icon/defaultboy.png"></image>
 					</uni-col>
@@ -66,7 +66,7 @@
 					</uni-col>
 				</uni-row>
 
-				<uni-row>
+				<uni-row :class="{backcolor:item.approvalStateEnum=='2'}">
 					<uni-col :span="4" style="text-align: center;">
 						<view class="yindao" style="height: 80rpx;"></view>
 					</uni-col>
@@ -93,7 +93,7 @@
 				<textarea auto-height class="textarea" v-model="remark" />
 			</view>
 		</view>
-		<view id="btnplan"  v-if="data.isCurrentUserApproved==0&&data.workflowStatus==1">
+		<view id="btnplan" v-if="data.isCurrentUserApproved==0&&data.workflowStatus==1">
 			<view id="btn" class="uni-padding-wrap uni-common-mt">
 				<button type="primary" :loading="isokloading" @click="ok">同意</button>
 				<button type="primary" :loading="isrejectloading" @click="reject" style="margin-top: 10rpx;">拒绝</button>
