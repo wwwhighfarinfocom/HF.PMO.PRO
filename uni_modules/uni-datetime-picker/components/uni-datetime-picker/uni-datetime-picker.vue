@@ -867,7 +867,7 @@
 	}
 
 	.uni-date-editor--x__disabled {
-		opacity: 0.4;
+		/* opacity: 0.4; */
 		cursor: default;
 	}
 

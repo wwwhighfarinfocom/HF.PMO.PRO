@@ -401,7 +401,7 @@
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
-		border: 1px solid $uni-border-1;
+		/* border: 1px solid $uni-border-1; */
 		border-radius: 4px;
 	}
 
@@ -452,7 +452,7 @@
 	.is-disabled {
 		border-color: red;
 		background-color: #F7F6F6;
-		color: #D5D5D5;
+		/* color: #D5D5D5; */
 		.uni-easyinput__placeholder-class {
 			color: #D5D5D5;
 			font-size: 12px;
