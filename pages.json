@@ -37,6 +37,12 @@
 			"enablePullDownRefresh": false,
 			"navigationBarTitleText": "任务信息"
 		}
+	}, {
+		"path": "pages/Problem/Problem",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "我的问题"
+		}
 	}],
 	"globalStyle": {
 		"navigationStyle": "custom",

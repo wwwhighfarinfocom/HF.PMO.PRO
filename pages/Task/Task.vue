@@ -17,61 +17,61 @@
 			<view class="tabclass" v-show="checkedNum === 0">
 				<uni-list v-for="(item,index) in ownList">
 					<view class="ronqi" @click="onClick(item)">
-						<text>任务名称：{{item.taskName}}\n</text>
+						<text class="rwname">{{item.taskName}}\n</text>
 						<text>所属项目：{{item.projectName}}\n</text>
 						<text>{{item.dateRange}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
-				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
+				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn" v-show="!isLoadend">
 				</uni-load-more>
 			</view>
 			<view class="tabclass" v-show="checkedNum === 1">
 				<uni-list v-for="(item,index) in undoneList">
 					<view class="ronqi" @click="onClick(item)">
-						<text>任务名称：{{item.taskName}}\n</text>
+						<text class="rwname">{{item.taskName}}\n</text>
 						<text>所属项目：{{item.projectName}}\n</text>
 						<text>{{item.dateRange}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
-				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
+				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn" v-show="!isLoadend">
 				</uni-load-more>
 			</view>
 			<view class="tabclass" v-show="checkedNum === 2">
 				<uni-list v-for="(item,index) in txpiringList">
 					<view class="ronqi" @click="onClick(item)">
-						<text>任务名称：{{item.taskName}}\n</text>
+						<text class="rwname">{{item.taskName}}\n</text>
 						<text>所属项目：{{item.projectName}}\n</text>
 						<text>{{item.dateRange}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
-				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
+				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn" v-show="!isLoadend">
 				</uni-load-more>
 			</view>
 			<view class="tabclass" v-show="checkedNum === 3">
 				<uni-list v-for="(item,index) in delayList">
 					<view class="ronqi" @click="onClick(item)">
-						<text>任务名称：{{item.taskName}}\n</text>
+						<text class="rwname">{{item.taskName}}\n</text>
 						<text>所属项目：{{item.projectName}}\n</text>
 						<text>{{item.dateRange}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
-				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
+				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn" v-show="!isLoadend">
 				</uni-load-more>
 			</view>
 			<view class="tabclass" v-show="checkedNum === 4">
 				<uni-list v-for="(item,index) in comList">
 					<view class="ronqi" @click="onClick(item)">
-						<text>任务名称：{{item.taskName}}\n</text>
+						<text class="rwname">{{item.taskName}}\n</text>
 						<text>所属项目：{{item.projectName}}\n</text>
 						<text>{{item.dateRange}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
-				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
+				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn" v-show="!isLoadend">
 				</uni-load-more>
 			</view>
 		</view>
@@ -228,7 +228,6 @@
 					me.isLoadend = false;
 					me.dropDownLoadData();
 				}
-
 			},
 
 			onReachBottom() {

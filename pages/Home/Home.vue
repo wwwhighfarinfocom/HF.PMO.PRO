@@ -46,7 +46,7 @@
 					},
 					{
 						text: '我的问题',
-						badge: '12',
+						badge: '0',
 						type: "error"
 					},
 					{
@@ -84,7 +84,6 @@
 					withCredentials: true,
 					success(res) {
 						console.log(res);
-						var num = res.data.result.myPendingNum.toString();
 						me.list.forEach(x => {
 							switch (x.text) {
 								case '我的任务':
@@ -92,6 +91,9 @@
 									break;
 								case '我的审批':
 									x.badge = res.data.result.myPendingNum.toString();
+									break;
+								case '我的问题':
+									x.badge = res.data.result.myProblenNum.toString();
 									break;
 							}
 						})
@@ -114,6 +116,11 @@
 					case 1: // 我的审批
 						uni.navigateTo({
 							url: "../Approval/Index?type=" + index,
+						});
+						break;
+					case 4: // 我的问题
+						uni.navigateTo({
+							url: "../Problem/Problem?type=" + index,
 						});
 						break;
 					default:

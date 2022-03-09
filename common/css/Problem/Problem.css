@@ -1,22 +1,3 @@
-#control {
-	width: 100%;
-	height: 75rpx;
-}
-
-#plan {
-	width: 100%;
-	margin: auto;
-	margin-bottom: 10rpx;
-	position: fixed;
-	z-index: 9999;
-	background-color: #FFFFFF;
-}
-
-.tabclass {
-	width: 96%;
-	margin: auto;
-}
-
 #optionsstyle {
 	width: 18%;
 	height: 100%;
@@ -35,6 +16,10 @@
 	padding: 20rpx 0;
 }
 
+.checked {
+	border-bottom: 4rpx solid #007AFF;
+}
+
 .content {
 	width: 83%;
 	float: left;
@@ -42,8 +27,9 @@
 	margin-left: 17%;
 }
 
-.checked {
-	border-bottom: 4rpx solid #007AFF;
+.tabclass {
+	width: 96%;
+	margin: auto;
 }
 
 .ronqi {
@@ -60,7 +46,7 @@
 	bottom: 40%;
 }
 
-.rwname{
+.proname{
 	color: #000000;
 	font-size: 26rpx;
 	font-weight: bold;
