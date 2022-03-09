@@ -43,6 +43,12 @@
 			"enablePullDownRefresh": false,
 			"navigationBarTitleText": "我的问题"
 		}
+	}, {
+		"path": "pages/Problem/ProblemForm",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "问题详情"
+		}
 	}],
 	"globalStyle": {
 		"navigationStyle": "custom",

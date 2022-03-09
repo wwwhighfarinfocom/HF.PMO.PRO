@@ -35,7 +35,7 @@
 			return {
 				username: 'admin',
 				password: '123qwe',
-				maxHeight: 500,
+				maxHeight: 1500,
 				tenantName: 'MG',
 			}
 		},
@@ -44,7 +44,7 @@
 			/* 页面渲染 */
 			uni.getSystemInfo({
 				success: (res) => {
-					this.maxHeight = res.windowHeight;
+					me.maxHeight = res.windowHeight;
 				}
 			})
 		},

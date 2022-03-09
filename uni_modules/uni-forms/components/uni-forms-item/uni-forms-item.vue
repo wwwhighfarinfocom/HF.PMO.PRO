@@ -399,7 +399,7 @@ export default {
 	/* #endif */
 	// flex-direction: row;
 	// align-items: center;
-	padding-bottom: 22px;
+	padding-bottom: 10px;
 	// margin-bottom: 22px;
 }
 

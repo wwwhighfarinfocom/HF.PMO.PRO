@@ -236,7 +236,9 @@
 
 			onClick(item) {
 				/* 点击问题事件 */
-
+				uni.navigateTo({
+					url: "../Problem/ProblemForm?Id=" + item.id,
+				});
 			},
 
 			clickLoadMoreOwn() {
