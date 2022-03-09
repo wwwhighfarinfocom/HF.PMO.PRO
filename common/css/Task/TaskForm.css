@@ -65,3 +65,19 @@ page {
 	width: 40%;
 	margin: 10rpx 20rpx 5rpx 20rpx;
 }
+
+#lc {
+	margin-top: 20rpx;
+	float: right;
+}
+
+
+.liucheng {
+	width: 150rpx;
+	color: #007AFF;
+	padding-right: 25rpx;
+}
+
+.liucheng:active{
+	color: #23A6D5;
+}

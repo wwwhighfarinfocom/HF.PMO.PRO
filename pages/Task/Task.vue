@@ -16,50 +16,60 @@
 		<view class="content">
 			<view class="tabclass" v-show="checkedNum === 0">
 				<uni-list v-for="(item,index) in ownList">
-					<uni-list-item link to="/pages/vue/index/index" @click="onClick(item)"
-						:title="'任务名称：'+item.taskName" :note="'所属项目：'+item.projectName" thumb-size="lg"
-						:rightText="item.dateRange">
-					</uni-list-item>
+					<view class="ronqi" @click="onClick(item)">
+						<text>任务名称：{{item.taskName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>{{item.dateRange}}\n</text>
+						<image src="/static/Icon/jinru.png" class="tup"></image>
+					</view>
 				</uni-list>
 				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
 				</uni-load-more>
 			</view>
 			<view class="tabclass" v-show="checkedNum === 1">
 				<uni-list v-for="(item,index) in undoneList">
-					<uni-list-item link to="/pages/vue/index/index" @click="onClick(item)"
-						:title="'任务名称：'+item.taskName" :note="'所属项目：'+item.projectName" thumb-size="lg"
-						:rightText="item.dateRange">
-					</uni-list-item>
+					<view class="ronqi" @click="onClick(item)">
+						<text>任务名称：{{item.taskName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>{{item.dateRange}}\n</text>
+						<image src="/static/Icon/jinru.png" class="tup"></image>
+					</view>
 				</uni-list>
 				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
 				</uni-load-more>
 			</view>
 			<view class="tabclass" v-show="checkedNum === 2">
 				<uni-list v-for="(item,index) in txpiringList">
-					<uni-list-item link to="/pages/vue/index/index" @click="onClick(item)"
-						:title="'任务名称：'+item.taskName" :note="'所属项目：'+item.projectName" thumb-size="lg"
-						:rightText="item.dateRange">
-					</uni-list-item>
+					<view class="ronqi" @click="onClick(item)">
+						<text>任务名称：{{item.taskName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>{{item.dateRange}}\n</text>
+						<image src="/static/Icon/jinru.png" class="tup"></image>
+					</view>
 				</uni-list>
 				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
 				</uni-load-more>
 			</view>
 			<view class="tabclass" v-show="checkedNum === 3">
 				<uni-list v-for="(item,index) in delayList">
-					<uni-list-item link to="/pages/vue/index/index" @click="onClick(item)"
-						:title="'任务名称：'+item.taskName" :note="'所属项目：'+item.projectName" thumb-size="lg"
-						:rightText="item.dateRange">
-					</uni-list-item>
+					<view class="ronqi" @click="onClick(item)">
+						<text>任务名称：{{item.taskName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>{{item.dateRange}}\n</text>
+						<image src="/static/Icon/jinru.png" class="tup"></image>
+					</view>
 				</uni-list>
 				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
 				</uni-load-more>
 			</view>
 			<view class="tabclass" v-show="checkedNum === 4">
 				<uni-list v-for="(item,index) in comList">
-					<uni-list-item link to="/pages/vue/index/index" @click="onClick(item)"
-						:title="'任务名称：'+item.taskName" :note="'所属项目：'+item.projectName" thumb-size="lg"
-						:rightText="item.dateRange">
-					</uni-list-item>
+					<view class="ronqi" @click="onClick(item)">
+						<text>任务名称：{{item.taskName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>{{item.dateRange}}\n</text>
+						<image src="/static/Icon/jinru.png" class="tup"></image>
+					</view>
 				</uni-list>
 				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn">
 				</uni-load-more>
@@ -212,6 +222,7 @@
 			},
 
 			clickLoadMoreOwn(e) {
+				/* 上拉自动加载 */
 				var me = this;
 				if (me.isLoadend) {
 					me.isLoadend = false;
@@ -221,6 +232,7 @@
 			},
 
 			onReachBottom() {
+				/* 点击加载 */
 				var me = this;
 				if (me.isLoadend) {
 					me.isLoadend = false;

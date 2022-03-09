@@ -42,6 +42,9 @@
 				</view>
 			</uni-forms>
 		</view>
+		<view id="lc" v-show="!formData.workflowStatus==0">
+			<text class="liucheng" @click="checklc">查看流程>></text>
+		</view>
 		<view class="button-sp-area btnplan">
 			<view class="plan">
 				<button class="mini-btn btn1" :disabled="isbtnA" type="default" size="mini"
@@ -291,7 +294,16 @@
 				this.$nextTick(function() {
 					this.hackReset = true;
 				})
-			}
+			},
+			checklc() {
+				/* 查看流程 */
+				var me = this;
+				if (me.formData.workflowUID != null) {
+					uni.navigateTo({
+						url: "../Approval/Processpage?uid=" + me.formData.workflowUID + "&type=1"
+					})
+				}
+			},
 		}
 	}
 </script>

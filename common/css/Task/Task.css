@@ -45,3 +45,17 @@
 .checked {
 	border-bottom: 4rpx solid #007AFF;
 }
+
+.ronqi {
+	font-size: 24rpx;
+	color: #565656;
+	margin: 20rpx 20rpx 20rpx 25rpx;
+}
+
+.tup {
+	width: 30rpx;
+	height: 30rpx;
+	position:absolute;
+	right: 50rpx;
+	bottom: 40%;
+}
