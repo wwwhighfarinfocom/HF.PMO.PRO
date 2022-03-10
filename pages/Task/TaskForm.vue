@@ -142,6 +142,7 @@
 				});
 			},
 			upperTask() {
+				/* 上一条 */
 				var me = this;
 				me.isbtnA = true;
 				me.isbtnB = true;
@@ -166,6 +167,7 @@
 				me.init();
 			},
 			nextTask() {
+				/* 下一条 */
 				var me = this;
 				me.isbtnA = true;
 				me.isbtnB = true;

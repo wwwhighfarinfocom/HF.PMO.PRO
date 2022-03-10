@@ -3,46 +3,49 @@
 		<view id="form">
 			<uni-forms :modelValue="formData">
 				<uni-forms-item label="问题名称" name="problemName">
-					<uni-easyinput type="text" v-model="formData.problemName" />
+					<uni-easyinput type="text" v-model="formData.problemName" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="所属项目" name="projectName">
-					<uni-easyinput type="text" v-model="formData.projectName" />
+					<uni-easyinput type="text" v-model="formData.projectName" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="提出人" name="createName">
-					<uni-easyinput type="text" v-model="formData.createName" />
+					<uni-easyinput type="text" v-model="formData.createName" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="负责人" name="trustName">
-					<uni-easyinput type="text" v-model="formData.trustName" />
+					<uni-easyinput type="text" v-model="formData.trustName" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="提出时间" name="createDate">
-					<uni-easyinput type="text" v-model="formData.createDate" />
+					<uni-datetime-picker type="date" :value="formData.createDate" :border="false" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="截止时间" name="expireDate">
-					<uni-easyinput type="text" v-model="formData.expireDate" />
+					<uni-datetime-picker type="date" :value="formData.expireDate" :border="false" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="解决日期" name="finishDate">
-					<uni-easyinput type="text" v-model="formData.finishDate" />
+					<uni-datetime-picker type="date" v-model="formData.finishDate" :border="false"
+						:disabled="formData.problemStatusEnum==3" />
 				</uni-forms-item>
 				<uni-forms-item label="当前状态" name="problemStatus">
-					<uni-easyinput type="text" v-model="formData.problemStatus" />
+					<uni-easyinput type="text" v-model="formData.problemStatus" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="问题类型" name="problemType">
-					<uni-easyinput type="text" v-model="formData.problemType" />
+				<uni-forms-item label="问题类别" name="problemType">
+					<uni-easyinput type="text" v-model="formData.problemType" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="问题说明" name="explain">
-					<textarea style="width: 100%; padding-top: 15rpx; font-size: 28rpx;" v-model="formData.explain" />
+					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.explain"
+						:disabled="formData.problemStatusEnum==3" />
 				</uni-forms-item>
 				<uni-forms-item label="解决方案" name="solution">
-					<textarea style="width: 100%; padding-top: 15rpx; font-size: 28rpx;" v-model="formData.solution" />
+					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.solution"
+						:disabled="formData.problemStatusEnum==3" />
 				</uni-forms-item>
 			</uni-forms>
 		</view>
 		<view class="button-sp-area btnplan">
 			<view class="btnclass">
-				<button class="mini-btn btn" type="default" size="mini">上一条</button>
-				<button class="mini-btn btn" type="primary" size="mini">保存</button>
-				<button class="mini-btn btn" type="primary" size="mini">提交</button>
-				<button class="mini-btn btn" type="default" size="mini">下一条</button>
+				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="upperTask">上一条</button>
+				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="saveBtn">保存</button>
+				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="submitBtn">提交</button>
+				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="nextTask">下一条</button>
 			</view>
 		</view>
 	</view>
@@ -55,23 +58,28 @@
 				id: null,
 				maxHeight: 1500,
 				formData: {
-					problemName: "江湖故人",
-					projectName: null,
-					createName: null,
-					trustName: null,
-					createDate: "2022-03-09",
-					expireDate: "2022-03-09",
-					finishDate: null,
-					problemStatus: null,
-					problemType: "俄罗斯乌克兰局势怎么看",
-					explain: "俄罗斯乌克兰局势怎么看俄罗斯乌克兰局势怎么看俄罗斯乌克兰局势怎么看俄罗斯乌克兰所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所少时诵诗书所所所所所所所所所所所所所所所所所所所所所所所所所所所所所",
-					solution: "俄罗斯乌克兰局势怎么看俄罗斯乌克兰局势怎么看俄罗斯乌克兰局势怎么看俄罗斯乌克兰局势怎么看",
+					problemName: "",
+					projectName: "",
+					createName: "",
+					trustName: "",
+					createDate: "",
+					expireDate: "",
+					finishDate: "",
+					problemStatus: "",
+					problemType: "",
+					explain: "",
+					solution: "",
 				},
+				btnA: true,
+				btnB: true,
+				status: null,
+				ids: [], // id集合
 			}
 		},
 		onLoad(option) {
 			var me = this;
 			this.id = option.Id;
+			this.status = option.type;
 			/* 页面渲染 */
 			uni.getSystemInfo({
 				success: (res) => {
@@ -80,26 +88,166 @@
 			})
 		},
 		mounted() {
-			//this.init();
+			this.init();
+			/* 获取问题id集合 */
+			this.getProblemIds();
 		},
 		methods: {
 			init() {
 				var me = this;
 				uni.showLoading();
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/GetProblemInfoById",
+					url: me.requestUrl + "/api/services/app/Problem/GetProblemByIdData",
 					method: "GET",
 					withCredentials: true,
 					data: {
 						id: me.id,
 					},
 					success(res) {
+						if (res.data.success) {
+							me.formData = res.data.result;
+							me.btnB = me.formData.problemStatusEnum == 3;
+						}
+					},
+					complete() {
+						uni.hideLoading();
+						me.btnA = false;
+					}
+				});
+			},
 
+			getProblemIds() {
+				/* 获取问题id集合 */
+				var me = this;
+				uni.showLoading();
+				uni.request({
+					url: me.requestUrl + "/api/services/app/Problem/GetProblemIds",
+					method: "GET",
+					withCredentials: true,
+					data: {
+						type: me.status,
+					},
+					success(res) {
+						if (res.data.success) {
+							me.ids = res.data.result;
+							me.btnA = false;
+						}
+					}
+				});
+			},
+
+			saveBtn() {
+				/* 保存 */
+				var me = this;
+				uni.showLoading();
+				uni.request({
+					url: me.requestUrl + "/api/services/app/Problem/SaveProblem",
+					method: "POST",
+					withCredentials: true,
+					data: me.formData,
+					success(res) {
+						if (res.data.success) {
+							uni.showToast({
+								title: "成功成功",
+								icon: "success",
+								success() {
+									setTimeout(function() {
+										uni.navigateTo({
+											url: "../Problem/Problem?type=4",
+										});
+									}, 500);
+								}
+							})
+						}
 					},
 					complete() {
 						uni.hideLoading();
 					}
 				});
+			},
+
+			submitBtn() {
+				/* 提交 */
+				var me = this;
+				uni.showLoading();
+				uni.request({
+					url: me.requestUrl + "/api/services/app/Problem/SubmitProblem",
+					method: "POST",
+					withCredentials: true,
+					data: me.formData,
+					success(res) {
+						if (res.data.success) {
+							uni.showToast({
+								title: "成功成功",
+								icon: "success",
+								success() {
+									setTimeout(function() {
+										uni.navigateTo({
+											url: "../Problem/Problem?type=4",
+										});
+									}, 500);
+								}
+							})
+						}
+					},
+					complete() {
+						uni.hideLoading();
+					}
+				});
+			},
+
+			upperTask() {
+				/* 上一条 */
+				var me = this;
+				me.btnA = true;
+				var isbtnB = me.btnB;
+				me.btnB = true;
+				var index = me.ids.findIndex((item) => {
+					return item == me.id
+				});
+				if (index == 0) {
+					uni.showToast({
+						title: "已是第一个问题",
+						icon: "error",
+						success() {
+							me.btnA = false;
+							me.btnB = isbtnB;
+						}
+					})
+					return;
+				}
+				var ids = me.ids.filter((x, i) => {
+					return i == index - 1;
+				});
+				me.id = ids[0];
+				me.init();
+			},
+
+			nextTask() {
+				/* 下一条 */
+				var me = this;
+				me.btnA = true;
+				var isbtnB = me.btnB;
+				me.btnB = true;
+				var index = me.ids.findIndex((item) => {
+					return item == me.id
+				});
+				if (index == me.ids.length - 1) {
+					uni.showToast({
+						title: "已是最后一个问题",
+						icon: "error",
+						success() {
+							me.btnA = false;
+							me.btnB = isbtnB;
+						}
+					})
+					return;
+				}
+				var ids = me.ids.filter((x, i) => {
+					return i == index + 1;
+				});
+				me.id = ids[0];
+				me.init();
 			},
 		}
 	}

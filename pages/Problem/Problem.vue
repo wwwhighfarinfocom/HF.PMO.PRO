@@ -236,8 +236,9 @@
 
 			onClick(item) {
 				/* 点击问题事件 */
+				var me = this;
 				uni.navigateTo({
-					url: "../Problem/ProblemForm?Id=" + item.id,
+					url: "../Problem/ProblemForm?Id=" + item.id + "&type=" + me.checkedNum,
 				});
 			},
 
