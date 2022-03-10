@@ -51,7 +51,7 @@
 					},
 					{
 						text: '我的风险',
-						badge: '22',
+						badge: '0',
 						type: "error"
 					},
 					{
@@ -95,6 +95,9 @@
 								case '我的问题':
 									x.badge = res.data.result.myProblenNum.toString();
 									break;
+								case '我的风险':
+									x.badge = res.data.result.myRiskNum.toString();
+									break;
 							}
 						})
 					},
@@ -121,6 +124,11 @@
 					case 4: // 我的问题
 						uni.navigateTo({
 							url: "../Problem/Problem?type=" + index,
+						});
+						break;
+					case 5: // 我的风险
+						uni.navigateTo({
+							url: "../Risk/Risk?type=" + index,
 						});
 						break;
 					default:

@@ -49,6 +49,18 @@
 			"enablePullDownRefresh": false,
 			"navigationBarTitleText": "问题详情"
 		}
+	}, {
+		"path": "pages/Risk/Risk",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "我的风险"
+		}
+	}, {
+		"path": "pages/Risk/RiskForm",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "风险详情"
+		}
 	}],
 	"globalStyle": {
 		"navigationStyle": "custom",

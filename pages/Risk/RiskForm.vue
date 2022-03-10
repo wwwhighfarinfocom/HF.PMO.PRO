@@ -2,11 +2,14 @@
 	<view id="main" :style="{height:maxHeight+'px'}">
 		<view id="form">
 			<uni-forms :modelValue="formData">
-				<uni-forms-item label="问题名称" name="problemName">
-					<uni-easyinput type="text" v-model="formData.problemName" :disabled="true" />
+				<uni-forms-item label="风险名称" name="riskName">
+					<uni-easyinput type="text" v-model="formData.riskName" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="所属项目" name="projectName">
 					<uni-easyinput type="text" v-model="formData.projectName" :disabled="true" />
+				</uni-forms-item>
+				<uni-forms-item label="预计成本" name="forecastCost">
+					<uni-easyinput type="number" v-model="formData.forecastCost" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="提出人" name="createName">
 					<uni-easyinput type="text" v-model="formData.createName" :disabled="true" />
@@ -22,21 +25,21 @@
 				</uni-forms-item>
 				<uni-forms-item label="解决日期" name="finishDate">
 					<uni-datetime-picker type="date" v-model="formData.finishDate" :border="false"
-						:disabled="formData.problemStatusEnum==3" />
+						:disabled="formData.riskStatusEnum==3" />
 				</uni-forms-item>
-				<uni-forms-item label="当前状态" name="problemStatus">
-					<uni-easyinput type="text" v-model="formData.problemStatus" :disabled="true" />
+				<uni-forms-item label="当前状态" name="riskStatus">
+					<uni-easyinput type="text" v-model="formData.riskStatus" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="问题类别" name="problemType">
-					<uni-easyinput type="text" v-model="formData.problemType" :disabled="true" />
+				<uni-forms-item label="风险类别" name="riskType">
+					<uni-easyinput type="text" v-model="formData.riskType" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="问题说明" name="explain">
+				<uni-forms-item label="风险说明" name="explain">
 					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.explain"
-						:disabled="formData.problemStatusEnum==3" />
+						:disabled="formData.riskStatusEnum==3" />
 				</uni-forms-item>
 				<uni-forms-item label="解决方案" name="solution">
 					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.solution"
-						:disabled="formData.problemStatusEnum==3" />
+						:disabled="formData.riskStatusEnum==3" />
 				</uni-forms-item>
 			</uni-forms>
 		</view>
@@ -58,15 +61,15 @@
 				id: null,
 				maxHeight: 1500,
 				formData: {
-					problemName: "",
+					riskName: "",
 					projectName: "",
 					createName: "",
 					trustName: "",
 					createDate: "",
 					expireDate: "",
 					finishDate: "",
-					problemStatus: "",
-					problemType: "",
+					riskStatus: "",
+					riskType: "",
 					explain: "",
 					solution: "",
 				},
@@ -90,14 +93,14 @@
 		mounted() {
 			this.init();
 			/* 获取问题id集合 */
-			this.getProblemIds();
+			this.getRiskIds();
 		},
 		methods: {
 			init() {
 				var me = this;
 				uni.showLoading();
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/GetProblemByIdData",
+					url: me.requestUrl + "/api/services/app/Risk/GetRiskByIdData",
 					method: "GET",
 					withCredentials: true,
 					data: {
@@ -106,7 +109,7 @@
 					success(res) {
 						if (res.data.success) {
 							me.formData = res.data.result;
-							me.btnB = me.formData.problemStatusEnum == 3;
+							me.btnB = me.formData.riskStatusEnum == 3;
 						}
 					},
 					complete() {
@@ -116,11 +119,11 @@
 				});
 			},
 
-			getProblemIds() {
+			getRiskIds() {
 				/* 获取问题id集合 */
 				var me = this;
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/GetProblemIds",
+					url: me.requestUrl + "/api/services/app/Risk/GetRiskIds",
 					method: "GET",
 					withCredentials: true,
 					data: {
@@ -140,7 +143,7 @@
 				var me = this;
 				uni.showLoading();
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/SaveProblem",
+					url: me.requestUrl + "/api/services/app/Risk/SaveRisk",
 					method: "POST",
 					withCredentials: true,
 					data: me.formData,
@@ -152,7 +155,7 @@
 								success() {
 									setTimeout(function() {
 										uni.navigateTo({
-											url: "../Problem/Problem?type=4",
+											url: "../Risk/Risk?type=5",
 										});
 									}, 500);
 								}
@@ -170,7 +173,7 @@
 				var me = this;
 				uni.showLoading();
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/SubmitProblem",
+					url: me.requestUrl + "/api/services/app/Risk/SubmitRisk",
 					method: "POST",
 					withCredentials: true,
 					data: me.formData,
@@ -182,7 +185,7 @@
 								success() {
 									setTimeout(function() {
 										uni.navigateTo({
-											url: "../Problem/Problem?type=4",
+											url: "../Risk/Risk?type=5",
 										});
 									}, 500);
 								}
@@ -206,7 +209,7 @@
 				});
 				if (index == 0) {
 					uni.showToast({
-						title: "已是第一个问题",
+						title: "已是第一个风险",
 						icon: "error",
 						success() {
 							me.btnA = false;
@@ -233,7 +236,7 @@
 				});
 				if (index == me.ids.length - 1) {
 					uni.showToast({
-						title: "已是最后一个问题",
+						title: "已是最后一个风险",
 						icon: "error",
 						success() {
 							me.btnA = false;
@@ -253,5 +256,5 @@
 </script>
 
 <style>
-	@import url("/common/css/Problem/ProblemForm.css");
+		@import url("/common/css/Risk/RiskForm.css");
 </style>
