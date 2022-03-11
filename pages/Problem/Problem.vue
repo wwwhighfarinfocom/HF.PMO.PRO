@@ -30,6 +30,21 @@
 			</view>
 
 			<view class="tabclass" v-show="checkedNum === 1">
+				<uni-list v-for="(item,index) in waitList">
+					<view class="ronqi" @click="onClick(item)">
+						<text class="proname">{{item.problemName}}\n</text>
+						<text>提出人：{{item.createName}}\n</text>
+						<text>问题类别：{{item.problemType}}\n</text>
+						<text>过期时间：{{item.expireDateStr}}\n</text>
+						<image src="/static/Icon/jinru.png" class="tup"></image>
+					</view>
+				</uni-list>
+				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn"
+					v-if="!isLoadend">
+				</uni-load-more>
+			</view>
+
+			<view class="tabclass" v-show="checkedNum === 2">
 				<uni-list v-for="(item,index) in expiredList">
 					<view class="ronqi" @click="onClick(item)">
 						<text class="proname">{{item.problemName}}\n</text>
@@ -44,7 +59,7 @@
 				</uni-load-more>
 			</view>
 
-			<view class="tabclass" v-show="comingList === 2">
+			<view class="tabclass" v-show="comingList === 3">
 				<uni-list v-for="(item,index) in comingList">
 					<view class="ronqi" @click="onClick(item)">
 						<text class="proname">{{item.problemName}}\n</text>
@@ -56,21 +71,6 @@
 				</uni-list>
 				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn"
 					v-show="!isLoadend">
-				</uni-load-more>
-			</view>
-
-			<view class="tabclass" v-show="checkedNum === 3">
-				<uni-list v-for="(item,index) in waitList">
-					<view class="ronqi" @click="onClick(item)">
-						<text class="proname">{{item.problemName}}\n</text>
-						<text>提出人：{{item.createName}}\n</text>
-						<text>问题类别：{{item.problemType}}\n</text>
-						<text>过期时间：{{item.expireDateStr}}\n</text>
-						<image src="/static/Icon/jinru.png" class="tup"></image>
-					</view>
-				</uni-list>
-				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn"
-					v-if="!isLoadend">
 				</uni-load-more>
 			</view>
 
@@ -102,17 +102,17 @@
 					type: "primary",
 					ix: 0,
 				}, {
+					text: '待处理',
+					badge: '0',
+					type: "warning",
+					ix: 1,
+				}, {
 					text: '过期问题',
 					badge: '0',
 					type: "error",
-					ix: 1,
-				}, {
-					text: '即将过期',
-					badge: '0',
-					type: "warning",
 					ix: 2,
 				}, {
-					text: '待处理',
+					text: '即将过期',
 					badge: '0',
 					type: "warning",
 					ix: 3,
@@ -123,9 +123,9 @@
 					ix: 4,
 				}],
 				wholeList: [], //全部问题列表
+				waitList: [], //待处理问题列表
 				expiredList: [], //过期问题列表
 				comingList: [], //即将过期问题列表
-				waitList: [], //待处理问题列表
 				successList: [], //完成问题列表
 				checkedNum: 0, //tab索引
 				page: 1, // 页码
@@ -158,13 +158,13 @@
 										x.badge = data.allNum.toString();
 										break;
 									case 1:
-										x.badge = data.expiredNum.toString();
+										x.badge = data.waitNum.toString();
 										break;
 									case 2:
-										x.badge = data.comingNum.toString();
+										x.badge = data.expiredNum.toString();
 										break;
 									case 3:
-										x.badge = data.waitNum.toString();
+										x.badge = data.comingNum.toString();
 										break;
 									case 4:
 										x.badge = data.successNum.toString();
@@ -190,9 +190,9 @@
 				if (me.checkedNum != num) {
 					me.checkedNum = num;
 					me.wholeList = [];
+					me.waitList = [];
 					me.expiredList = [];
 					me.comingList = [];
-					me.waitList = [];
 					me.successList = [];
 					uni.showLoading();
 					me.page = 1;
@@ -213,13 +213,13 @@
 										me.wholeList = list;
 										break;
 									case 1:
-										me.expiredList = list;
+										me.waitList = list;
 										break;
 									case 2:
-										me.comingList = list;
+										me.expiredList = list;
 										break;
 									case 3:
-										me.waitList = list;
+										me.comingList = list;
 										break;
 									case 4:
 										me.successList = list;
@@ -282,13 +282,13 @@
 									me.wholeList = me.wholeList.concat(list);
 									break;
 								case 1:
-									me.expiredList = me.expiredList.concat(list);
+									me.waitList = me.waitList.concat(list);
 									break;
 								case 2:
-									me.comingList = me.comingList.concat(list);
+									me.expiredList = me.expiredList.concat(list);
 									break;
 								case 3:
-									me.waitList = me.waitList.concat(list);
+									me.comingList = me.comingList.concat(list);
 									break;
 								case 4:
 									me.successList = me.successList.concat(list);
@@ -302,6 +302,11 @@
 					}
 				});
 			},
+		},
+		onNavigationBarButtonTap() {
+			uni.reLaunch({
+				url: "../Home/Home"
+			})
 		}
 	}
 </script>

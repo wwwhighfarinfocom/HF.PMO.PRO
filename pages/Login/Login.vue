@@ -110,6 +110,7 @@
 					returnUrl: "/",
 					returnUrlHash: ""
 				}
+				
 				// 登录请求
 				uni.request({
 					url: me.requestUrl + "/Account/Login",

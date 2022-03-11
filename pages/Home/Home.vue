@@ -67,11 +67,23 @@
 				]
 			}
 		},
+		onReady() {
+
+		},
 		onBackPress(e) {
 			// 上一页
 			return true;
 		},
 		mounted() {
+			// 隐藏导航左侧退出图标 /* H5隐藏 */
+			// #ifdef H5
+			var titleBtn1 = document.getElementsByClassName('uni-page-head-btn')[0]
+			var titleBtn2 = document.getElementsByClassName('uni-page-head-btn')[1]
+			titleBtn1.style.display = 'none';
+			titleBtn2.style.margin = 'auto';
+			titleBtn2.style.padding = '5px';
+			// #endif
+			// 初始化加载
 			this.init();
 		},
 		methods: {
@@ -135,6 +147,11 @@
 						break;
 				}
 			},
+		},
+		onNavigationBarButtonTap() {
+			uni.reLaunch({
+				url: "../Login/Login"
+			})
 		}
 	}
 </script>

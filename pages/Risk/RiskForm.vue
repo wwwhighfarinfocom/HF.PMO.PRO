@@ -24,8 +24,7 @@
 					<uni-datetime-picker type="date" :value="formData.expireDate" :border="false" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="解决日期" name="finishDate">
-					<uni-datetime-picker type="date" v-model="formData.finishDate" :border="false"
-						:disabled="formData.riskStatusEnum==3" />
+					<uni-datetime-picker type="date" v-model="formData.finishDate" :border="false" />
 				</uni-forms-item>
 				<uni-forms-item label="当前状态" name="riskStatus">
 					<uni-easyinput type="text" v-model="formData.riskStatus" :disabled="true" />
@@ -34,12 +33,10 @@
 					<uni-easyinput type="text" v-model="formData.riskType" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="风险说明" name="explain">
-					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.explain"
-						:disabled="formData.riskStatusEnum==3" />
+					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.explain" />
 				</uni-forms-item>
 				<uni-forms-item label="解决方案" name="solution">
-					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.solution"
-						:disabled="formData.riskStatusEnum==3" />
+					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.solution" />
 				</uni-forms-item>
 			</uni-forms>
 		</view>
@@ -47,7 +44,7 @@
 			<view class="btnclass">
 				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="upperTask">上一条</button>
 				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="saveBtn">保存</button>
-				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="submitBtn">提交</button>
+				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="submitBtn">取消</button>
 				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="nextTask">下一条</button>
 			</view>
 		</view>
@@ -109,7 +106,7 @@
 					success(res) {
 						if (res.data.success) {
 							me.formData = res.data.result;
-							me.btnB = me.formData.riskStatusEnum == 3;
+							me.btnB = false;
 						}
 					},
 					complete() {
@@ -150,11 +147,11 @@
 					success(res) {
 						if (res.data.success) {
 							uni.showToast({
-								title: "成功成功",
+								title: "保存成功",
 								icon: "success",
 								success() {
 									setTimeout(function() {
-										uni.navigateTo({
+										uni.redirectTo({
 											url: "../Risk/Risk?type=5",
 										});
 									}, 500);
@@ -171,7 +168,8 @@
 			submitBtn() {
 				/* 提交 */
 				var me = this;
-				uni.showLoading();
+				me.$router.go(0); // 刷新
+				/* uni.showLoading();
 				uni.request({
 					url: me.requestUrl + "/api/services/app/Risk/SubmitRisk",
 					method: "POST",
@@ -180,11 +178,11 @@
 					success(res) {
 						if (res.data.success) {
 							uni.showToast({
-								title: "成功成功",
+								title: "提交成功",
 								icon: "success",
 								success() {
 									setTimeout(function() {
-										uni.navigateTo({
+										uni.redirectTo({
 											url: "../Risk/Risk?type=5",
 										});
 									}, 500);
@@ -195,7 +193,7 @@
 					complete() {
 						uni.hideLoading();
 					}
-				});
+				}); */
 			},
 
 			upperTask() {
@@ -251,10 +249,15 @@
 				me.id = ids[0];
 				me.init();
 			},
+		},
+		onNavigationBarButtonTap() {
+			uni.reLaunch({
+				url: "../Home/Home"
+			})
 		}
 	}
 </script>
 
 <style>
-		@import url("/common/css/Risk/RiskForm.css");
+	@import url("/common/css/Risk/RiskForm.css");
 </style>

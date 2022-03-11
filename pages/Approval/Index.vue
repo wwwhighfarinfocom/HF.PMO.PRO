@@ -142,6 +142,11 @@
 					url: "../Approval/Processpage?uid=" + row.workflowId + "&type=" + me.typeNumber
 				})
 			}
+		},
+		onNavigationBarButtonTap() {
+			uni.reLaunch({
+				url: "../Home/Home"
+			})
 		}
 	}
 </script>

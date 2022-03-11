@@ -10,66 +10,195 @@
 	}, {
 		"path": "pages/Home/Home",
 		"style": {
-			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "PMO-主页"
+			"enablePullDownRefresh": false, // 是否启用下拉刷新
+			"navigationBarTitleText": "PMO-主页",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue652"
+
+					}]
+				}
+			}
 		}
 	}, {
 		"path": "pages/Approval/Index",
 		"style": {
 			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "我的审批"
+			"navigationBarTitleText": "我的审批",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+			
+					}]
+				}
+			}
 		}
 	}, {
 		"path": "pages/Approval/Processpage",
 		"style": {
 			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "流程审批"
+			"navigationBarTitleText": "流程审批",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+			
+					}]
+				}
+			}
 		}
 	}, {
 		"path": "pages/Task/Task",
 		"style": {
 			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "我的任务"
+			"navigationBarTitleText": "我的任务",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+			
+					}]
+				}
+			}
 		}
 	}, {
 		"path": "pages/Task/TaskForm",
 		"style": {
 			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "任务信息"
+			"navigationBarTitleText": "任务信息",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+			
+					}]
+				}
+			}
 		}
 	}, {
 		"path": "pages/Problem/Problem",
 		"style": {
 			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "我的问题"
+			"navigationBarTitleText": "我的问题",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+			
+					}]
+				}
+			}
 		}
 	}, {
 		"path": "pages/Problem/ProblemForm",
 		"style": {
 			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "问题详情"
+			"navigationBarTitleText": "问题详情",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+			
+					}]
+				}
+			}
 		}
 	}, {
 		"path": "pages/Risk/Risk",
 		"style": {
 			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "我的风险"
+			"navigationBarTitleText": "我的风险",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+			
+					}]
+				}
+			}
 		}
 	}, {
 		"path": "pages/Risk/RiskForm",
 		"style": {
 			"enablePullDownRefresh": false,
-			"navigationBarTitleText": "风险详情"
+			"navigationBarTitleText": "风险详情",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+			
+					}]
+				}
+			}
 		}
 	}],
 	"globalStyle": {
-		"navigationStyle": "custom",
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
+		// #ifdef APP
+		"navigationStyle": "custom", //隐藏原生导航栏
+		// #endif
+		
+		"navigationBarTextStyle": "black", //标题字体颜色
+		"navigationBarTitleText": "PMO", // 默认标题
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
 		"app-plus": {
-			"background": "#efeff4"
+			"background": "#FFFFFF"
 		},
 		"pageOrientation": "portrait", //横屏配置，全局屏幕旋转设置(仅 APP/微信/QQ小程序)，支持 auto / portrait / landscape
 		"rpxCalcMaxDeviceWidth": 960,

@@ -217,7 +217,7 @@
 								icon: "success",
 								success() {
 									setTimeout(function() {
-										uni.navigateTo({
+										uni.redirectTo({
 											url: "../Approval/Index?type=" + me.typeNumber,
 										})
 									}, 500);
@@ -230,6 +230,11 @@
 					}
 				})
 			}
+		},
+		onNavigationBarButtonTap() {
+			uni.reLaunch({
+				url: "../Home/Home"
+			})
 		}
 	}
 </script>
