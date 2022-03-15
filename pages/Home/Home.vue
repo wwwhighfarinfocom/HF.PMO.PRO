@@ -36,11 +36,11 @@
 					},
 					{
 						text: '我的通知',
-						badge: '99',
+						badge: '0',
 						type: "warning"
 					},
 					{
-						text: '我的提醒',
+						text: '我的项目',
 						badge: '2',
 						type: "primary"
 					},
@@ -95,23 +95,28 @@
 					method: "GET",
 					withCredentials: true,
 					success(res) {
-						console.log(res);
-						me.list.forEach(x => {
-							switch (x.text) {
-								case '我的任务':
-									x.badge = res.data.result.myTaskNum.toString();
-									break;
-								case '我的审批':
-									x.badge = res.data.result.myPendingNum.toString();
-									break;
-								case '我的问题':
-									x.badge = res.data.result.myProblenNum.toString();
-									break;
-								case '我的风险':
-									x.badge = res.data.result.myRiskNum.toString();
-									break;
-							}
-						})
+						if (res.data.success) {
+							console.log(res);
+							me.list.forEach(x => {
+								switch (x.text) {
+									case '我的任务':
+										x.badge = res.data.result.myTaskNum.toString();
+										break;
+									case '我的审批':
+										x.badge = res.data.result.myPendingNum.toString();
+										break;
+									case '我的通知':
+										x.badge = res.data.result.myNoticeNum.toString();
+										break;
+									case '我的问题':
+										x.badge = res.data.result.myProblenNum.toString();
+										break;
+									case '我的风险':
+										x.badge = res.data.result.myRiskNum.toString();
+										break;
+								}
+							})
+						}
 					},
 					complete() {
 						uni.hideLoading();
@@ -131,6 +136,11 @@
 					case 1: // 我的审批
 						uni.navigateTo({
 							url: "../Approval/Index?type=" + index,
+						});
+						break;
+					case 2: // 	我的通知
+						uni.navigateTo({
+							url: "../Notice/Notice?type=" + index,
 						});
 						break;
 					case 4: // 我的问题
