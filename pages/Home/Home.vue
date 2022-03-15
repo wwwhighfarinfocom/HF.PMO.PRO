@@ -4,7 +4,7 @@
 			<image src="/static/Img/logo.jpg"></image>
 		</view>
 		<view id="optionsstyle">
-			<uni-grid :column="4" :square="false" @change="change">
+			<uni-grid :column="3" :square="false" @change="change">
 				<uni-grid-item v-for="(item ,index) in list" :index="index" :key="index">
 					<view class="grid-item-box">
 						<text class="text">{{item.text}}</text>
@@ -53,16 +53,6 @@
 						text: '我的风险',
 						badge: '0',
 						type: "error"
-					},
-					{
-						text: '我的缺陷',
-						badge: '24',
-						type: "error"
-					},
-					{
-						text: '我的需求',
-						badge: '102',
-						type: "success"
 					}
 				]
 			}

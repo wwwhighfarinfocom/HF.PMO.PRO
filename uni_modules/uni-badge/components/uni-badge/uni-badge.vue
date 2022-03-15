@@ -131,8 +131,14 @@
 				return match ? match : whiteList['rightTop']
 			},
 			badgeWidth() {
-				return {
-					width: `${this.width}px`
+				if (this.width == 20) {
+					return {
+						width: `30px`
+					}
+				} else {
+					return {
+						width: `${this.width}px`
+					}
 				}
 			},
 			dotStyle() {
@@ -160,7 +166,7 @@
 	};
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 	$uni-primary: #2979ff !default;
 	$uni-success: #4cd964 !default;
 	$uni-warning: #f0ad4e !default;
@@ -198,8 +204,8 @@
 		/* #endif */
 		justify-content: center;
 		flex-direction: row;
-		height: 20px;
-		line-height: 18px;
+		height: 30px;
+		line-height: 28px;
 		color: #fff;
 		border-radius: 100px;
 		background-color: $uni-info;
@@ -207,7 +213,7 @@
 		border: 1px solid #fff;
 		text-align: center;
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
-		font-size: $bage-size;
+		font-size: 14px;
 		/* #ifdef H5 */
 		z-index: 999;
 		cursor: pointer;
