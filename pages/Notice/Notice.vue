@@ -183,11 +183,13 @@
 					success() {
 						me.titleList.forEach(x => {
 							if (x.ix == 1) {
-								x.badge = (parseInt(x.badge) - 1).toString();
-								var index = me.unreadList.findIndex((y) => {
-									return y.guid == item.guid
-								});
-								me.unreadList.splice(index, 1);
+								if (parseInt(x.badge) > 0) {
+									x.badge = (parseInt(x.badge) - 1).toString();
+									var index = me.unreadList.findIndex((y) => {
+										return y.guid == item.guid
+									});
+									me.unreadList.splice(index, 1);
+								}
 							}
 						});
 					}
