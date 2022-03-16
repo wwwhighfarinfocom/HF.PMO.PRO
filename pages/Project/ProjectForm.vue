@@ -2,50 +2,40 @@
 	<view id="main" :style="{height:maxHeight+'px'}">
 		<view id="form">
 			<uni-forms :modelValue="formData">
-				<uni-forms-item label="风险名称" name="riskName">
-					<uni-easyinput type="text" v-model="formData.riskName" :disabled="true" />
-				</uni-forms-item>
-				<uni-forms-item label="所属项目" name="projectName">
+				<uni-forms-item label="项目名称" name="projectName">
 					<uni-easyinput type="text" v-model="formData.projectName" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="预计成本" name="forecastCost">
-					<uni-easyinput type="text" v-model="formData.forecastCost" :disabled="true" />
+				<uni-forms-item label="项目编号" name="projectCode">
+					<uni-easyinput type="text" v-model="formData.projectCode" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="提出人" name="createName">
-					<uni-easyinput type="text" v-model="formData.createName" :disabled="true" />
+				<uni-forms-item label="项目经理" name="userName">
+					<uni-easyinput type="text" v-model="formData.userName" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="负责人" name="trustName">
-					<uni-easyinput type="text" v-model="formData.trustName" :disabled="true" />
+				<uni-forms-item label="项目成本" name="projectCost">
+					<uni-easyinput type="text" v-model="formData.projectCost" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="提出时间" name="createDate">
-					<uni-datetime-picker type="date" :value="formData.createDate" :border="false" :disabled="true" />
+				<uni-forms-item label="开始日期" name="startDate">
+					<uni-datetime-picker type="date" :value="formData.startDate" :border="false" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="截止时间" name="expireDate">
-					<uni-datetime-picker type="date" :value="formData.expireDate" :border="false" :disabled="true" />
+				<uni-forms-item label="完成日期" name="endDate">
+					<uni-datetime-picker type="date" :value="formData.endDate" :border="false" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="解决日期" name="finishDate">
-					<uni-datetime-picker type="date" v-model="formData.finishDate" :border="false" />
+				<uni-forms-item label="项目状态" name="status">
+					<uni-easyinput type="text" v-model="formData.status" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="当前状态" name="riskStatus">
-					<uni-easyinput type="text" v-model="formData.riskStatus" :disabled="true" />
+				<uni-forms-item label="项目类型" name="projectType">
+					<uni-easyinput type="text" v-model="formData.projectType" :disabled="true" />
 				</uni-forms-item>
-				<uni-forms-item label="风险类别" name="riskType">
-					<uni-easyinput type="text" v-model="formData.riskType" :disabled="true" />
-				</uni-forms-item>
-				<uni-forms-item label="风险说明" name="explain">
-					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.explain" />
-				</uni-forms-item>
-				<uni-forms-item label="解决方案" name="solution">
-					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.solution" />
+				<uni-forms-item label="说明" name="remark">
+					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.remark"
+						:disabled="true" />
 				</uni-forms-item>
 			</uni-forms>
 		</view>
 		<view class="button-sp-area btnplan">
 			<view class="btnclass">
-				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="upperTask">上一条</button>
-				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="saveBtn">保存</button>
-				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="submitBtn">取消</button>
-				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="nextTask">下一条</button>
+				<button class="mini-btn btn1" :disabled="btnA" type="default" size="mini" @click="upperTask">上一条</button>
+				<button class="mini-btn btn2" :disabled="btnA" type="default" size="mini" @click="nextTask">下一条</button>
 			</view>
 		</view>
 	</view>
@@ -58,17 +48,16 @@
 				id: null,
 				maxHeight: 1500,
 				formData: {
-					riskName: "",
 					projectName: "",
-					createName: "",
-					trustName: "",
-					createDate: "",
-					expireDate: "",
-					finishDate: "",
-					riskStatus: "",
-					riskType: "",
-					explain: "",
-					solution: "",
+					projectCode: "",
+					startDate: "",
+					endDate: "",
+					projectCost: "",
+					status: "",
+					projectType: "",
+					remark: "",
+					problemType: "",
+					userName: "",
 				},
 				btnA: true,
 				btnB: true,
@@ -90,14 +79,14 @@
 		mounted() {
 			this.init();
 			/* 获取问题id集合 */
-			this.getRiskIds();
+			this.getProjectIds();
 		},
 		methods: {
 			init() {
 				var me = this;
 				uni.showLoading();
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Risk/GetRiskByIdData",
+					url: me.requestUrl + "/api/services/app/Project/GetProjectByIdData",
 					method: "GET",
 					withCredentials: true,
 					data: {
@@ -116,11 +105,11 @@
 				});
 			},
 
-			getRiskIds() {
+			getProjectIds() {
 				/* 获取问题id集合 */
 				var me = this;
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Risk/GetRiskIds",
+					url: me.requestUrl + "/api/services/app/Project/GetProjectIds",
 					method: "GET",
 					withCredentials: true,
 					data: {
@@ -140,7 +129,7 @@
 				var me = this;
 				uni.showLoading();
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Risk/SaveRisk",
+					url: me.requestUrl + "/api/services/app/Problem/SaveProblem",
 					method: "POST",
 					withCredentials: true,
 					data: me.formData,
@@ -152,7 +141,7 @@
 								success() {
 									setTimeout(function() {
 										uni.redirectTo({
-											url: "../Risk/Risk?type=5",
+											url: "../Problem/Problem?type=4",
 										});
 									}, 500);
 								}
@@ -168,32 +157,8 @@
 			submitBtn() {
 				/* 提交 */
 				var me = this;
+				//uni.showLoading();
 				me.$router.go(0); // 刷新
-				/* uni.showLoading();
-				uni.request({
-					url: me.requestUrl + "/api/services/app/Risk/SubmitRisk",
-					method: "POST",
-					withCredentials: true,
-					data: me.formData,
-					success(res) {
-						if (res.data.success) {
-							uni.showToast({
-								title: "提交成功",
-								icon: "success",
-								success() {
-									setTimeout(function() {
-										uni.redirectTo({
-											url: "../Risk/Risk?type=5",
-										});
-									}, 500);
-								}
-							})
-						}
-					},
-					complete() {
-						uni.hideLoading();
-					}
-				}); */
 			},
 
 			upperTask() {
@@ -207,7 +172,7 @@
 				});
 				if (index == 0) {
 					uni.showToast({
-						title: "已是第一个风险",
+						title: "已是第一个问题",
 						icon: "error",
 						success() {
 							me.btnA = false;
@@ -234,7 +199,7 @@
 				});
 				if (index == me.ids.length - 1) {
 					uni.showToast({
-						title: "已是最后一个风险",
+						title: "已是最后一个问题",
 						icon: "error",
 						success() {
 							me.btnA = false;
@@ -259,5 +224,5 @@
 </script>
 
 <style>
-	@import url("/common/css/Risk/RiskForm.css");
+	@import url("/common/css/Project/ProjectForm.css");
 </style>

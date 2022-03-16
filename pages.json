@@ -68,6 +68,26 @@
 			}
 		}
 	}, {
+		"path": "pages/Approval/RemarkForm",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "审批意见",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+
+					}]
+				}
+			}
+		}
+	}, {
 		"path": "pages/Task/Task",
 		"style": {
 			"enablePullDownRefresh": false,
@@ -212,6 +232,46 @@
 		"style": {
 			"enablePullDownRefresh": false,
 			"navigationBarTitleText": "通知详情",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+
+					}]
+				}
+			}
+		}
+	}, {
+		"path": "pages/Project/Project",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "我的项目",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+
+					}]
+				}
+			}
+		}
+	}, {
+		"path": "pages/Project/ProjectForm",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "项目详情",
 			"navigationBarTextStyle": "black",
 			"app-plus": {
 				"titleNView": {

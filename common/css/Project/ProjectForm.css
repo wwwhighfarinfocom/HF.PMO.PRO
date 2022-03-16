@@ -1,0 +1,58 @@
+page {
+	background-color: #f5f5f5;
+}
+
+#main {
+	width: 96%;
+	margin: auto;
+	background: #FFFFFF;
+	padding-top: 10rpx;
+}
+
+#form {
+	width: 85%;
+	margin: auto;
+}
+
+.btnplan {
+	width: 100%;
+	text-align: center;
+}
+
+.btnclass {
+	width: 96%;
+	height: 90rpx;
+	background: #fff;
+	z-index: 10;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+}
+
+button::after {
+	border: none;
+}
+
+.btn1 {
+	width: 45%;
+	margin-bottom: 10rpx;
+	margin-top: 10rpx;
+	border: 1px solid #42b983;
+	border-radius: 0rpx;
+	border-top-left-radius: 40rpx;
+	border-bottom-left-radius: 40rpx;
+	background-color: #FFFFFF;
+	font-size: 30rpx;
+}
+
+.btn2 {
+	width: 45%;
+	margin-bottom: 10rpx;
+	margin-top: 10rpx;
+	border: 1px solid #42b983;
+	border-radius: 0rpx;
+	border-top-right-radius: 40rpx;
+	border-bottom-right-radius: 40rpx;
+	background-color: #FFFFFF;
+	font-size: 30rpx;
+}

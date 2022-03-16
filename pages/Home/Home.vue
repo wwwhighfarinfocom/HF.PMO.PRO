@@ -41,7 +41,7 @@
 					},
 					{
 						text: '我的项目',
-						badge: '2',
+						badge: '0',
 						type: "primary"
 					},
 					{
@@ -98,6 +98,9 @@
 									case '我的通知':
 										x.badge = res.data.result.myNoticeNum.toString();
 										break;
+									case '我的项目':
+										x.badge = res.data.result.myProjectNum.toString();
+										break;
 									case '我的问题':
 										x.badge = res.data.result.myProblenNum.toString();
 										break;
@@ -131,6 +134,11 @@
 					case 2: // 	我的通知
 						uni.navigateTo({
 							url: "../Notice/Notice?type=" + index,
+						});
+						break;
+					case 3: // 	我的项目
+						uni.navigateTo({
+							url: "../Project/Project?type=" + index,
 						});
 						break;
 					case 4: // 我的问题

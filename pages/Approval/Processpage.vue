@@ -86,17 +86,13 @@
 				</uni-col>
 			</uni-row>
 		</view>
-
-		<view id="beizhu" v-if="data.isCurrentUserApproved==0&&data.workflowStatus==1">
-			<view class="bzstyle">备注</view>
-			<view class="bzstyle">
-				<textarea auto-height class="textarea" v-model="remark" />
-			</view>
-		</view>
+		
 		<view id="btnplan" v-if="data.isCurrentUserApproved==0&&data.workflowStatus==1">
-			<view id="btn" class="uni-padding-wrap uni-common-mt">
-				<button type="primary" :loading="isokloading" @click="ok">同意</button>
-				<button type="primary" :loading="isrejectloading" @click="reject" style="margin-top: 10rpx;">拒绝</button>
+			<view id="btn">
+				<button class="mini-btn btn1" :loading="isokloading" @click="reject" type="default"
+					size="mini">拒绝</button>
+				<button class="mini-btn btn2" :loading="isrejectloading" @click="ok" type="primary"
+					size="mini">同意</button>
 			</view>
 		</view>
 	</view>
@@ -163,73 +159,23 @@
 			ok() {
 				var me = this;
 				me.isokloading = true;
-				uni.request({
-					url: me.requestUrl + "/api/services/app/Approva/ReplyMethod",
-					method: "POST",
-					withCredentials: true,
-					data: {
-						workflowUID: me.uid,
-						result: "1",
-						currentStepID: me.data.currentStepID,
-						remark: me.remark,
-					},
-					header: {
-						'content-type': 'application/x-www-form-urlencoded' //自定义请求头信息
-					},
-					success(res) {
-						if (res.statusCode == 200) {
-							uni.showToast({
-								title: "审批成功",
-								icon: "success",
-								success() {
-									setTimeout(function() {
-										me.$router.go(0); // 刷新
-									}, 500);
-								}
-							})
-						}
-					},
-					complete() {
+				uni.navigateTo({
+					url: "../Approval/RemarkForm?id=" + me.uid + "&type=1&StepID=" + me.data.currentStepID,
+					success() {
 						me.isokloading = false;
 					}
-				})
+				});
 			},
 			reject() {
 				var me = this;
 				me.isrejectloading = true;
-				uni.request({
-					url: me.requestUrl + "/api/services/app/Approva/ReplyMethod",
-					method: "POST",
-					withCredentials: true,
-					data: {
-						workflowUID: me.uid,
-						result: "-1",
-						currentStepID: me.data.currentStepID,
-						remark: me.remark,
-					},
-					header: {
-						'content-type': 'application/x-www-form-urlencoded' //自定义请求头信息
-					},
-					success(res) {
-						if (res.statusCode == 200) {
-							uni.showToast({
-								title: "审批成功",
-								icon: "success",
-								success() {
-									setTimeout(function() {
-										uni.redirectTo({
-											url: "../Approval/Index?type=" + me.typeNumber,
-										})
-									}, 500);
-								}
-							})
-						}
-					},
-					complete() {
+				uni.navigateTo({
+					url: "../Approval/RemarkForm?id=" + me.uid + "&type=-1&StepID=" + me.data.currentStepID,
+					success() {
 						me.isrejectloading = false;
 					}
-				})
-			}
+				});
+			},
 		},
 		onNavigationBarButtonTap() {
 			uni.reLaunch({

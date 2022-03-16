@@ -57,7 +57,9 @@
 
 #btnplan {
 	width: 100%;
-	height: 200rpx;
+	height: 100rpx;
+	text-align: center;
+	background-color: #f5f5f5;
 }
 
 image {
@@ -91,4 +93,32 @@ image {
 
 .backcolor {
 	background-color: #f9f5e1;
+}
+
+button::after {
+	border: none;
+}
+
+.btn1 {
+	width: 47%;
+	margin-bottom: 5rpx;
+	margin-top: 10rpx;
+	border: 1px solid #42b983;
+	border-radius: 0rpx;
+	border-top-left-radius: 40rpx;
+	border-bottom-left-radius: 40rpx;
+	background-color: #FFFFFF;
+	font-size: 30rpx;
+}
+
+.btn2 {
+	width: 47%;
+	margin-bottom: 5rpx;
+	margin-top: 10rpx;
+	border: 1px solid #42b983;
+	border-radius: 0rpx;
+	border-top-right-radius: 40rpx;
+	border-bottom-right-radius: 40rpx;
+	background-color: #42b983;
+	font-size: 30rpx;
 }
