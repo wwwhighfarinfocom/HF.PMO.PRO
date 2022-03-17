@@ -18,6 +18,7 @@
 	@import '@/uni_modules/uni-scss/index.scss';
 	/* #ifndef APP-NVUE */
 	@import '@/static/customicons.css';
+
 	// 设置整个项目的背景色
 	page {
 		background-color: #f5f5f5;
@@ -28,5 +29,17 @@
 		font-size: 14px;
 		color: #333;
 		padding: 10px;
+	}
+
+	uni-checkbox .uni-checkbox-input {
+		/* 边框颜色 */
+		border: 1px solid #FFFFFF;
+		/* 剔除已有背景色 */
+		background-color: transparent;
+	}
+
+	uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
+		/* 勾选边框颜色 */
+		border-color: #FFFFFF;
 	}
 </style>

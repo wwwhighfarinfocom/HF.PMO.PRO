@@ -20,6 +20,16 @@
 				<input class="input" password="true" placeholder="请输入密码" style="margin-left: 40rpx;"
 					v-model="password" />
 			</view>
+			<view class="input-itemjizhu">
+				<view>
+					<checkbox-group>
+						<label>
+							<checkbox value="cb" color="#FFFFFF" :checked="rememberPsw"
+								@tap="rememberPsw =! rememberPsw" />记住账号密码
+						</label>
+					</checkbox-group>
+				</view>
+			</view>
 			<view class="button" @click="login">登录</view>
 			<view class="banquan">
 				<text class="banquandec">© 2022 高远科技-项目管理系统 V-1.0.0.0</text>
@@ -33,10 +43,11 @@
 	export default {
 		data() {
 			return {
-				username: 'admin',
-				password: '123qwe',
+				username: '',
+				password: '',
 				maxHeight: 1500,
 				tenantName: 'MG',
+				rememberPsw: false,
 			}
 		},
 		onLoad() {
@@ -49,8 +60,19 @@
 			})
 		},
 		mounted() {
+			var me = this;
+			/* 页面加载完成，获取本地存储的用户名及密码 */
+			const username = uni.getStorageSync('username');
+			const password = uni.getStorageSync('password');
+			if (username && password) {
+				me.username = username;
+				me.password = password;
+			} else {
+				me.username = "";
+				me.password = "";
+			}
 			/* 登录前 */
-			this.beforeLoginUpdCookie();
+			me.beforeLoginUpdCookie();
 		},
 		methods: {
 			/* 登录前 更新Cookie*/
@@ -110,7 +132,7 @@
 					returnUrl: "/",
 					returnUrlHash: ""
 				}
-				
+
 				// 登录请求
 				uni.request({
 					url: me.requestUrl + "/Account/Login",
@@ -124,7 +146,20 @@
 						// 主页
 						if (res.data.success) {
 							uni.navigateTo({
-								url: "../Home/Home"
+								url: "../Home/Home",
+								success() {
+									//登录成功将用户名密码存储到用户本地
+									if (me.rememberPsw) {
+										//用户勾选记住账号密码
+										uni.setStorageSync('username', me.username);
+										uni.setStorageSync('password', me.password);
+									} else { //用户没有勾选“记住密码”
+										uni.removeStorageSync('username');
+										uni.removeStorageSync('password');
+										me.username = "";
+										me.password = "";
+									}
+								}
 							})
 						} else {
 							uni.showToast({

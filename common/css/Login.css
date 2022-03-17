@@ -56,6 +56,14 @@
 	margin-top: 30rpx
 }
 
+.input-itemjizhu {
+	margin-right: 32rpx;
+	align-items: center;
+	margin-bottom: 20rpx;
+	margin-top: 40rpx;
+	text-align: right;
+}
+
 .title-content {
 	display: flex;
 	justify-content: flex-start;
@@ -68,6 +76,7 @@
 
 .input {
 	flex: 1;
+	color: #FFFFFF;
 }
 
 .button {
@@ -98,4 +107,8 @@
 .zhbiangen {
 	margin-left: 20rpx;
 	border-bottom: 1rpx solid #007AFF;
+}
+
+.uni-input-placeholder {
+	color: #dfdfdf;
 }
