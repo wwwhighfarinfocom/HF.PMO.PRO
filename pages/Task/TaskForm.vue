@@ -53,7 +53,7 @@
 			</view>
 			<view class="plan" v-show="!formData.workflowStatus==0">
 				<button class="mini-btn btn5" :disabled="isbtnA" type="default" size="mini"
-					@click="checklc">查看流程>></button>
+					@click="checklc"><i class="iconfont icon-wodeliucheng"></i>查看流程</button>
 				<button class="mini-btn btn3" :disabled="isbtnA" type="default" size="mini"
 					@click="upperTask">上一条</button>
 				<button class="mini-btn btn4" :disabled="isbtnA" type="default" size="mini"
@@ -318,4 +318,5 @@
 
 <style>
 	@import url("/common/css/Task/TaskForm.css");
+	@import url("/static/iconfont.css");
 </style>

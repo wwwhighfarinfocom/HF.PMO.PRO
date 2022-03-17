@@ -12,6 +12,10 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-wodeliucheng:before {
+  content: "\e648";
+}
+
 .icon-tuichu:before {
 	content: "\e652";
 }
