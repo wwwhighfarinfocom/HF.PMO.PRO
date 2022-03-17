@@ -53,6 +53,21 @@
 						text: '我的风险',
 						badge: '0',
 						type: "error"
+					},
+					{
+						text: '我的缺陷',
+						badge: '0',
+						type: "error"
+					},
+					{
+						text: '我的会议',
+						badge: '0',
+						type: "primary"
+					},
+					{
+						text: '我的团队',
+						badge: '0',
+						type: "primary"
 					}
 				]
 			}

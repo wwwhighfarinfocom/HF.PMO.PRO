@@ -67,6 +67,7 @@
 			if (username && password) {
 				me.username = username;
 				me.password = password;
+				me.rememberPsw = true;
 			} else {
 				me.username = "";
 				me.password = "";
