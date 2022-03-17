@@ -122,6 +122,9 @@
 									case '我的风险':
 										x.badge = res.data.result.myRiskNum.toString();
 										break;
+									case '我的缺陷':
+										x.badge = res.data.result.myDefectNum.toString();
+										break;
 								}
 							})
 						}
@@ -164,6 +167,11 @@
 					case 5: // 我的风险
 						uni.navigateTo({
 							url: "../Risk/Risk?type=" + index,
+						});
+						break;
+					case 6: // 我的缺陷
+						uni.navigateTo({
+							url: "../Defect/Defect?type=" + index,
 						});
 						break;
 					default:

@@ -17,10 +17,11 @@
 			<view class="tabclass" v-show="checkedNum === 0">
 				<uni-list v-for="(item,index) in wholeList">
 					<view class="ronqi" @click="onClick(item)">
-						<text class="proname">{{item.problemName}}\n</text>
-						<text>提出人：{{item.createName}}\n</text>
-						<text>问题类别：{{item.problemType}}\n</text>
-						<text>过期时间：{{item.expireDateStr}}\n</text>
+						<text class="proname">{{item.defectName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>缺陷编号：{{item.defectCode}}\n</text>
+						<text>负责人：{{item.userName}}\n</text>
+						<text>优先级：{{item.priority}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
@@ -32,10 +33,11 @@
 			<view class="tabclass" v-show="checkedNum === 1">
 				<uni-list v-for="(item,index) in waitList">
 					<view class="ronqi" @click="onClick(item)">
-						<text class="proname">{{item.problemName}}\n</text>
-						<text>提出人：{{item.createName}}\n</text>
-						<text>问题类别：{{item.problemType}}\n</text>
-						<text>过期时间：{{item.expireDateStr}}\n</text>
+						<text class="proname">{{item.defectName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>缺陷编号：{{item.defectCode}}\n</text>
+						<text>负责人：{{item.userName}}\n</text>
+						<text>优先级：{{item.priority}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
@@ -45,12 +47,13 @@
 			</view>
 
 			<view class="tabclass" v-show="checkedNum === 2">
-				<uni-list v-for="(item,index) in expiredList">
+				<uni-list v-for="(item,index) in waitList">
 					<view class="ronqi" @click="onClick(item)">
-						<text class="proname">{{item.problemName}}\n</text>
-						<text>提出人：{{item.createName}}\n</text>
-						<text>问题类别：{{item.problemType}}\n</text>
-						<text>过期时间：{{item.expireDateStr}}\n</text>
+						<text class="proname">{{item.defectName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>缺陷编号：{{item.defectCode}}\n</text>
+						<text>负责人：{{item.userName}}\n</text>
+						<text>优先级：{{item.priority}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
@@ -60,12 +63,13 @@
 			</view>
 
 			<view class="tabclass" v-show="checkedNum === 3">
-				<uni-list v-for="(item,index) in comingList">
+				<uni-list v-for="(item,index) in testList">
 					<view class="ronqi" @click="onClick(item)">
-						<text class="proname">{{item.problemName}}\n</text>
-						<text>提出人：{{item.createName}}\n</text>
-						<text>问题类别：{{item.problemType}}\n</text>
-						<text>过期时间：{{item.expireDateStr}}\n</text>
+						<text class="proname">{{item.defectName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>缺陷编号：{{item.defectCode}}\n</text>
+						<text>负责人：{{item.userName}}\n</text>
+						<text>优先级：{{item.priority}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
@@ -75,12 +79,45 @@
 			</view>
 
 			<view class="tabclass" v-show="checkedNum === 4">
-				<uni-list v-for="(item,index) in successList">
+				<uni-list v-for="(item,index) in deployList">
 					<view class="ronqi" @click="onClick(item)">
-						<text class="proname">{{item.problemName}}\n</text>
-						<text>提出人：{{item.createName}}\n</text>
-						<text>问题类别：{{item.problemType}}\n</text>
-						<text>过期时间：{{item.expireDateStr}}\n</text>
+						<text class="proname">{{item.defectName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>缺陷编号：{{item.defectCode}}\n</text>
+						<text>负责人：{{item.userName}}\n</text>
+						<text>优先级：{{item.priority}}\n</text>
+						<image src="/static/Icon/jinru.png" class="tup"></image>
+					</view>
+				</uni-list>
+				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn"
+					v-if="!isLoadend">
+				</uni-load-more>
+			</view>
+
+			<view class="tabclass" v-show="checkedNum === 5">
+				<uni-list v-for="(item,index) in publishList">
+					<view class="ronqi" @click="onClick(item)">
+						<text class="proname">{{item.defectName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>缺陷编号：{{item.defectCode}}\n</text>
+						<text>负责人：{{item.userName}}\n</text>
+						<text>优先级：{{item.priority}}\n</text>
+						<image src="/static/Icon/jinru.png" class="tup"></image>
+					</view>
+				</uni-list>
+				<uni-load-more :showText="false" :status="moreStatus" @clickLoadMore="clickLoadMoreOwn"
+					v-if="!isLoadend">
+				</uni-load-more>
+			</view>
+
+			<view class="tabclass" v-show="checkedNum === 6">
+				<uni-list v-for="(item,index) in stopList">
+					<view class="ronqi" @click="onClick(item)">
+						<text class="proname">{{item.defectName}}\n</text>
+						<text>所属项目：{{item.projectName}}\n</text>
+						<text>缺陷编号：{{item.defectCode}}\n</text>
+						<text>负责人：{{item.userName}}\n</text>
+						<text>优先级：{{item.priority}}\n</text>
 						<image src="/static/Icon/jinru.png" class="tup"></image>
 					</view>
 				</uni-list>
@@ -102,31 +139,43 @@
 					type: "primary",
 					ix: 0,
 				}, {
-					text: '待处理',
-					badge: '0',
-					type: "warning",
-					ix: 1,
-				}, {
-					text: '过期问题',
+					text: '处理中',
 					badge: '0',
 					type: "error",
+					ix: 1,
+				}, {
+					text: '开发中',
+					badge: '0',
+					type: "warning",
 					ix: 2,
 				}, {
-					text: '即将过期',
+					text: '测试中',
 					badge: '0',
 					type: "warning",
 					ix: 3,
 				}, {
-					text: '关闭问题',
+					text: '待部署',
 					badge: '0',
 					type: "success",
 					ix: 4,
+				}, {
+					text: '已发布',
+					badge: '0',
+					type: "success",
+					ix: 5,
+				}, {
+					text: '已关闭',
+					badge: '0',
+					type: "success",
+					ix: 6,
 				}],
-				wholeList: [], //全部问题列表
-				waitList: [], //待处理问题列表
-				expiredList: [], //过期问题列表
-				comingList: [], //即将过期问题列表
-				successList: [], //完成问题列表
+				wholeList: [], //全部缺陷列表
+				waitList: [], //处理中缺陷列表
+				devList: [], //开发中缺陷列表
+				testList: [], //测试期缺陷列表
+				deployList: [], //待部署缺陷列表
+				publishList: [], //已发布缺陷列表
+				stopList: [], //已关闭缺陷列表
 				checkedNum: 0, //tab索引
 				page: 1, // 页码
 				size: 15, // 数量
@@ -142,7 +191,7 @@
 				var me = this;
 				uni.showLoading();
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/GetProblemOwnData",
+					url: me.requestUrl + "/api/services/app/Defect/GetDefectOwnData",
 					method: "GET",
 					withCredentials: true,
 					data: {
@@ -155,19 +204,25 @@
 							me.titleList.forEach(x => {
 								switch (x.ix) {
 									case 0:
-										x.badge = data.allNum.toString();
+										x.badge = data.wholeNum.toString();
 										break;
 									case 1:
 										x.badge = data.waitNum.toString();
 										break;
 									case 2:
-										x.badge = data.expiredNum.toString();
+										x.badge = data.devNum.toString();
 										break;
 									case 3:
-										x.badge = data.comingNum.toString();
+										x.badge = data.testNum.toString();
 										break;
 									case 4:
-										x.badge = data.successNum.toString();
+										x.badge = data.deployNum.toString();
+										break;
+									case 5:
+										x.badge = data.publishNum.toString();
+										break;
+									case 6:
+										x.badge = data.stopNum.toString();
 										break;
 								}
 							});
@@ -191,13 +246,15 @@
 					me.checkedNum = num;
 					me.wholeList = [];
 					me.waitList = [];
-					me.expiredList = [];
-					me.comingList = [];
-					me.successList = [];
+					me.devList = [];
+					me.testList = [];
+					me.deployList = [];
+					me.publishList = [];
+					me.stopList = [];
 					uni.showLoading();
 					me.page = 1;
 					uni.request({
-						url: me.requestUrl + "/api/services/app/Problem/GetProblemTypeData",
+						url: me.requestUrl + "/api/services/app/Defect/GetDefectTypeData",
 						method: "GET",
 						withCredentials: true,
 						data: {
@@ -216,13 +273,19 @@
 										me.waitList = list;
 										break;
 									case 2:
-										me.expiredList = list;
+										me.devList = list;
 										break;
 									case 3:
-										me.comingList = list;
+										me.testList = list;
 										break;
 									case 4:
-										me.successList = list;
+										me.deployList = list;
+										break;
+									case 5:
+										me.publishList = list;
+										break;
+									case 6:
+										me.stopList = list;
 										break;
 								}
 							}
@@ -235,11 +298,11 @@
 			},
 
 			onClick(item) {
-				/* 点击问题事件 */
+				/* 点击缺陷事件 */
 				var me = this;
-				uni.navigateTo({
+				/* uni.navigateTo({
 					url: "../Problem/ProblemForm?Id=" + item.id + "&type=" + me.checkedNum,
-				});
+				}); */
 			},
 
 			clickLoadMoreOwn() {
@@ -266,7 +329,7 @@
 				me.page += 1;
 				me.moreStatus = "loading";
 				uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/GetProblemTypeData",
+					url: me.requestUrl + "/api/services/app/Defect/GetDefectTypeData",
 					method: "GET",
 					withCredentials: true,
 					data: {
@@ -285,13 +348,19 @@
 									me.waitList = me.waitList.concat(list);
 									break;
 								case 2:
-									me.expiredList = me.expiredList.concat(list);
+									me.devList = me.devList.concat(list);
 									break;
 								case 3:
-									me.comingList = me.comingList.concat(list);
+									me.testList = me.testList.concat(list);
 									break;
 								case 4:
-									me.successList = me.successList.concat(list);
+									me.deployList = me.deployList.concat(list);
+									break;
+								case 5:
+									me.publishList = me.publishList.concat(list);
+									break;
+								case 6:
+									me.stopList = me.stopList.concat(list);
 									break;
 							}
 						}
@@ -312,5 +381,5 @@
 </script>
 
 <style>
-	@import url("/common/css/Problem/Problem.css");
+	@import url("/common/css/Defect/Defect.css");
 </style>
