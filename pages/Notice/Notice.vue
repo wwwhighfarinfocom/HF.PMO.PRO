@@ -181,17 +181,20 @@
 				uni.navigateTo({
 					url: "../Notice/NoticeForm?Id=" + item.guid + "&type=" + me.checkedNum,
 					success() {
-						me.titleList.forEach(x => {
-							if (x.ix == 1) {
-								if (parseInt(x.badge) > 0) {
-									x.badge = (parseInt(x.badge) - 1).toString();
-									var index = me.unreadList.findIndex((y) => {
-										return y.guid == item.guid
-									});
-									me.unreadList.splice(index, 1);
+						/* 移除已读 */
+						if (me.checkedNum == 1) {
+							me.titleList.forEach(x => {
+								if (x.ix == 1) {
+									if (parseInt(x.badge) > 0) {
+										x.badge = (parseInt(x.badge) - 1).toString();
+										var index = me.unreadList.findIndex((y) => {
+											return y.guid == item.guid
+										});
+										me.unreadList.splice(index, 1);
+									}
 								}
-							}
-						});
+							});
+						}
 					}
 				});
 			},

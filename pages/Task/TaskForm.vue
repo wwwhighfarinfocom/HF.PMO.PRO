@@ -42,15 +42,21 @@
 				</view>
 			</uni-forms>
 		</view>
-		<view id="lc" v-show="!formData.workflowStatus==0">
-			<text class="liucheng" @click="checklc">查看流程>></text>
-		</view>
+	
 		<view class="button-sp-area btnplan">
-			<view class="plan">
+			<view class="plan" v-show="formData.workflowStatus==0">
 				<button class="mini-btn btn1" :disabled="isbtnA" type="default" size="mini"
 					@click="upperTask">上一条</button>
 				<button class="mini-btn btn2" :disabled="isbtnB" type="primary" size="mini" @click="ok">提交</button>
 				<button class="mini-btn btn1" :disabled="isbtnA" type="default" size="mini"
+					@click="nextTask">下一条</button>
+			</view>
+			<view class="plan" v-show="!formData.workflowStatus==0">
+				<button class="mini-btn btn5" :disabled="isbtnA" type="default" size="mini"
+					@click="checklc">查看流程>></button>
+				<button class="mini-btn btn3" :disabled="isbtnA" type="default" size="mini"
+					@click="upperTask">上一条</button>
+				<button class="mini-btn btn4" :disabled="isbtnA" type="default" size="mini"
 					@click="nextTask">下一条</button>
 			</view>
 		</view>

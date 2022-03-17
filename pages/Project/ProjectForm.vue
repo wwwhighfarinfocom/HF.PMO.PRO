@@ -124,43 +124,6 @@
 				});
 			},
 
-			saveBtn() {
-				/* 保存 */
-				var me = this;
-				uni.showLoading();
-				uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/SaveProblem",
-					method: "POST",
-					withCredentials: true,
-					data: me.formData,
-					success(res) {
-						if (res.data.success) {
-							uni.showToast({
-								title: "保存成功",
-								icon: "success",
-								success() {
-									setTimeout(function() {
-										uni.redirectTo({
-											url: "../Problem/Problem?type=4",
-										});
-									}, 500);
-								}
-							})
-						}
-					},
-					complete() {
-						uni.hideLoading();
-					}
-				});
-			},
-
-			submitBtn() {
-				/* 提交 */
-				var me = this;
-				//uni.showLoading();
-				me.$router.go(0); // 刷新
-			},
-
 			upperTask() {
 				/* 上一条 */
 				var me = this;

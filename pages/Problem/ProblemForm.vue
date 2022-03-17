@@ -23,14 +23,19 @@
 				<uni-forms-item label="解决日期" name="finishDate">
 					<uni-datetime-picker type="date" v-model="formData.finishDate" :border="false" />
 				</uni-forms-item>
-				<uni-forms-item label="当前状态" name="problemStatus">
-					<uni-easyinput type="text" v-model="formData.problemStatus" :disabled="true" />
+				<uni-forms-item label="当前状态" name="problemStatusEnum">
+					<view class="uni-list-cell-db" style="margin-top: 16rpx;">
+						<picker @change="bindPickerChange" :value="formData.problemStatusEnum-1" :range="array">
+							<view class="uni-input">{{array[formData.problemStatusEnum-1]}}</view>
+						</picker>
+					</view>
 				</uni-forms-item>
 				<uni-forms-item label="问题类别" name="problemType">
 					<uni-easyinput type="text" v-model="formData.problemType" :disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="问题说明" name="explain">
-					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.explain" />
+					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.explain"
+						:disabled="true" />
 				</uni-forms-item>
 				<uni-forms-item label="解决方案" name="solution">
 					<textarea auto-height style="width: 100%;padding-top: 18rpx;" v-model="formData.solution" />
@@ -39,10 +44,11 @@
 		</view>
 		<view class="button-sp-area btnplan">
 			<view class="btnclass">
-				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="upperTask">上一条</button>
+				<button class="mini-btn btn1" :disabled="btnA" type="default" size="mini"
+					@click="upperTask">上一条</button>
 				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="saveBtn">保存</button>
 				<button class="mini-btn btn" :disabled="btnB" type="primary" size="mini" @click="submitBtn">取消</button>
-				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="nextTask">下一条</button>
+				<button class="mini-btn btn1" :disabled="btnA" type="default" size="mini" @click="nextTask">下一条</button>
 			</view>
 		</view>
 	</view>
@@ -71,6 +77,7 @@
 				btnB: true,
 				status: null,
 				ids: [], // id集合
+				array: ['未解决', '解决中', '已解决'],
 			}
 		},
 		onLoad(option) {
@@ -132,6 +139,11 @@
 				});
 			},
 
+			bindPickerChange: function(e) {
+				var me = this
+				me.formData.problemStatusEnum = e.target.value + 1;
+			},
+
 			saveBtn() {
 				/* 保存 */
 				var me = this;
@@ -146,13 +158,6 @@
 							uni.showToast({
 								title: "保存成功",
 								icon: "success",
-								success() {
-									setTimeout(function() {
-										uni.redirectTo({
-											url: "../Problem/Problem?type=4",
-										});
-									}, 500);
-								}
 							})
 						}
 					},
@@ -163,34 +168,11 @@
 			},
 
 			submitBtn() {
-				/* 提交 */
+				/* 取消 */
 				var me = this;
-				//uni.showLoading();
-				me.$router.go(0); // 刷新
-				/* uni.request({
-					url: me.requestUrl + "/api/services/app/Problem/SubmitProblem",
-					method: "POST",
-					withCredentials: true,
-					data: me.formData,
-					success(res) {
-						if (res.data.success) {
-							uni.showToast({
-								title: "提交成功",
-								icon: "success",
-								success() {
-									setTimeout(function() {
-										uni.redirectTo({
-											url: "../Problem/Problem?type=4",
-										});
-									}, 500);
-								}
-							})
-						}
-					},
-					complete() {
-						uni.hideLoading();
-					}
-				}); */
+				uni.redirectTo({
+					url: "../Problem/Problem?type=4",
+				});
 			},
 
 			upperTask() {

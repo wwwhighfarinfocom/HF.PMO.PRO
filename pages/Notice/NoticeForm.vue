@@ -16,8 +16,8 @@
 		</view>
 		<view class="button-sp-area btnplan">
 			<view class="btnclass">
-				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="upperTask">上一条</button>
-				<button class="mini-btn btn" :disabled="btnA" type="default" size="mini" @click="nextTask">下一条</button>
+				<button class="mini-btn btn1" :disabled="btnA" type="default" size="mini" @click="upperTask">上一条</button>
+				<button class="mini-btn btn2" :disabled="btnA" type="default" size="mini" @click="nextTask">下一条</button>
 			</view>
 		</view>
 	</view>
