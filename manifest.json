@@ -1,5 +1,5 @@
 {
-    "name" : "PMOPRO",
+    "name" : "PMO",
     "appid" : "__UNI__39866E0",
     "description" : "",
     "versionName" : "1.0.0",
@@ -41,7 +41,12 @@
             },
             "ios" : {},
             /* ios打包配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {},
+            "icons" : {
+                "android" : {
+                    "hdpi" : ""
+                }
+            }
         }
     },
     /* SDK配置 */

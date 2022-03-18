@@ -286,11 +286,30 @@
 				}
 			}
 		}
-	},{
+	}, {
 		"path": "pages/Defect/Defect",
 		"style": {
 			"enablePullDownRefresh": false,
 			"navigationBarTitleText": "我的缺陷",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+					}]
+				}
+			}
+		}
+	}, {
+		"path": "pages/Defect/DefectForm",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "缺陷详情",
 			"navigationBarTextStyle": "black",
 			"app-plus": {
 				"titleNView": {

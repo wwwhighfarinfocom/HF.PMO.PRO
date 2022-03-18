@@ -300,9 +300,9 @@
 			onClick(item) {
 				/* 点击缺陷事件 */
 				var me = this;
-				/* uni.navigateTo({
-					url: "../Problem/ProblemForm?Id=" + item.id + "&type=" + me.checkedNum,
-				}); */
+				uni.navigateTo({
+					url: "../Defect/DefectForm?Id=" + item.id + "&type=" + me.checkedNum,
+				});
 			},
 
 			clickLoadMoreOwn() {

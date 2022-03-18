@@ -1,0 +1,51 @@
+page {
+	background-color: #f5f5f5;
+}
+
+#main {
+	width: 96%;
+	margin: auto;
+	background: #FFFFFF;
+	padding-top: 10rpx;
+}
+
+#form {
+	width: 85%;
+	margin: auto;
+}
+
+.btnplan {
+	width: 100%;
+	text-align: center;
+}
+
+.btnclass {
+	width: 96%;
+	background: #fff;
+	z-index: 10;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+}
+
+button::after {
+	border: none;
+}
+
+.btn {
+	width: 23%;
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-top: 10rpx;
+	font-size: 28rpx;
+}
+
+.btn1 {
+	width: 22%;
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-top: 10rpx;
+	font-size: 28rpx;
+	background-color: #FFFFFF;
+	border: 1rpx solid #42b983;
+}
