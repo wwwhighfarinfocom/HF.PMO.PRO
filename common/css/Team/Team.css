@@ -1,0 +1,32 @@
+
+
+.content {
+	width: 100%;
+}
+
+.tabclass {
+	width: 98%;
+	margin: auto;
+}
+
+.ronqi {
+	font-size: 28rpx;
+	color: #565656;
+	margin: 10rpx 20rpx 10rpx 25rpx;
+}
+
+.tup {
+	width: 30rpx;
+	height: 30rpx;
+	position: absolute;
+	right: 50rpx;
+	bottom: 40%;
+}
+
+
+.proname{
+	color: #000000;
+	font-size: 28rpx;
+	font-weight: bold;
+}
+

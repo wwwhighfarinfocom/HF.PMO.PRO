@@ -324,6 +324,63 @@
 				}
 			}
 		}
+	},{
+		"path": "pages/Team/Team",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "我的团队",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+					}]
+				}
+			}
+		}
+	},{
+		"path": "pages/Team/TeamList",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "团队信息",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+					}]
+				}
+			}
+		}
+	},{
+		"path": "pages/Team/TeamForm",
+		"style": {
+			"enablePullDownRefresh": false,
+			"navigationBarTitleText": "任务详情",
+			"navigationBarTextStyle": "black",
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"color": "#000000",
+						"colorPressed": "#007AFF",
+						"float": "right",
+						"fontSize": "22px",
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue646"
+					}]
+				}
+			}
+		}
 	}],
 	"globalStyle": {
 		// #ifdef APP

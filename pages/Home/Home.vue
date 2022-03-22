@@ -125,6 +125,9 @@
 									case '我的缺陷':
 										x.badge = res.data.result.myDefectNum.toString();
 										break;
+									case '我的团队':
+										x.badge = res.data.result.myTeamNum.toString();
+										break;
 								}
 							})
 						}
@@ -172,6 +175,11 @@
 					case 6: // 我的缺陷
 						uni.navigateTo({
 							url: "../Defect/Defect?type=" + index,
+						});
+						break;
+					case 8: // 我的团队
+						uni.navigateTo({
+							url: "../Team/Team?type=" + index,
 						});
 						break;
 					default:

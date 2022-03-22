@@ -1,0 +1,99 @@
+page {
+	background-color: #FFFFFF;
+}
+
+#main {
+	width: 100%;
+}
+
+#fromId {
+	width: 85%;
+	margin: auto;
+	padding-top: 20rpx;
+	padding-bottom: 20rpx;
+}
+
+.gq {
+	font-size: 35rpx;
+	font-weight: bold;
+	color: #4CD964;
+}
+
+.jdt {
+	padding-top: 20rpx;
+}
+
+.tpplan {
+	height: 48rpx;
+}
+
+.zhaopiang {
+	width: 45rpx;
+	height: 45rpx;
+	position: absolute;
+}
+
+.tptitle {
+	margin-left: 50rpx;
+}
+
+.img {
+	margin-top: 20rpx;
+}
+
+.btnplan {
+	width: 100%;
+	text-align: center;
+}
+
+.plan {
+	width: 100%;
+	background: #fff;
+	z-index: 10;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+}
+
+#lc {
+	margin-top: 20rpx;
+	float: right;
+}
+
+
+.liucheng {
+	width: 150rpx;
+	color: #007AFF;
+	padding-right: 25rpx;
+}
+
+.liucheng:active{
+	color: #23A6D5;
+}
+
+button::after {
+	border: none;
+}
+
+
+.btn3 {
+	width: 45%;
+	margin-top: 10rpx;
+	border: 1px solid #42b983;
+	border-radius: 0rpx;
+	border-top-left-radius: 40rpx;
+	border-bottom-left-radius: 40rpx;
+	background-color: #FFFFFF;
+	font-size: 30rpx;
+}
+
+.btn4 {
+	width: 45%;
+	margin-top: 10rpx;
+	border: 1px solid #42b983;
+	border-radius: 0rpx;
+	border-top-right-radius: 40rpx;
+	border-bottom-right-radius: 40rpx;
+	background-color: #FFFFFF;
+	font-size: 30rpx;
+}
