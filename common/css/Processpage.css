@@ -122,3 +122,12 @@ button::after {
 	background-color: #42b983;
 	font-size: 30rpx;
 }
+
+.stepStatus {
+	width: 30rpx;
+	height: 30rpx;
+	border-radius: 100rpx;
+	position: fixed;
+	margin-top:50rpx;
+	margin-left:-30rpx;
+}

@@ -46,6 +46,11 @@
 				<uni-row :class="{backcolor:item.approvalStateEnum=='2'}">
 					<uni-col :span="4" style="height: 83rpx;text-align: center;">
 						<image src="/static/Icon/defaultboy.png"></image>
+						<image v-show="item.approvalStateEnum==1" class="stepStatus" src="/static/Icon/gg.png"></image>
+						<image v-show="item.approvalStateEnum==2" class="stepStatus" src="/static/Icon/dengdai.png">
+						</image>
+						<image v-show="item.approvalStateEnum==3" class="stepStatus" src="/static/Icon/waiting.png">
+						</image>
 					</uni-col>
 					<uni-col :span="10">
 						<view><text>{{item.stepName}}</text></view>
@@ -86,7 +91,7 @@
 				</uni-col>
 			</uni-row>
 		</view>
-		
+
 		<view id="btnplan" v-if="data.isCurrentUserApproved==0&&data.workflowStatus==1">
 			<view id="btn">
 				<button class="mini-btn btn1" :loading="isokloading" @click="reject" type="default"
